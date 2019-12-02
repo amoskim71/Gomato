@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">Gomato</string>
+
+    <string name="OK">OK</string>
+    <string name="time_icon">Time Icon</string>
+
+    <string name="restaurant_image">Restaurant Image</string>
+    <string name="delivery">Delivery</string>
+    <string name="dine_out">Dine-out</string>
+    <string name="take_away">Take Away</string>
+    <string name="could_not_fetch_generic">Could not fetch the details. Please try again later.</string>
+    <string name="open_now">Open Now</string>
+    <string name="closed">Closed</string>
+    <string name="search">Search</string>
+    <string name="could_not_find_any_search_result_for_the_given_query">Could not find any search result for the given query.</string>
+    <string name="performs_the_search_operation">Performs the search operation</string>
+    <string name="reviews">Reviews</string>
+    <string name="share">Share</string>
+    <string name="share_rest_info">Share restaurant information</string>
+    <string name="powered_by_zomato_api">Powered by Torry Harris</string>
+
+    <string name="notify_user">The application uses basic Zomato API to display information.
+        This application is intended only for the purpose of learning. Also note, that this application may or may not work for you based on the API usage limit.
+        The application also captures analytics information about the application usage. No personal information is captured.
+        Application requires location access or else it defaults to Las Vegas.
+        Continue if you agree or else please exit.</string>
+    <string name="favourites">Favourites</string>
+    <string name="rest_fav_marked">Restaurant marked as favourite.</string>
+    <string name="rest_fav_cannot_marked">The requested action could not be performed.</string>
+    <string name="rest_fav_unmarked">Restaurant removed as favourite</string>
+
+
+
+</resources>

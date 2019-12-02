@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "119553069252",
+    "firebase_url": "https://gomato-bf5bd.firebaseio.com",
+    "project_id": "gomato-bf5bd",
+    "storage_bucket": "gomato-bf5bd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:119553069252:android:5929e6dbaadcc1d64df991",
+        "android_client_info": {
+          "package_name": "com.example.gomato"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "119553069252-1h0d17hppb84s7irool6a8kckluj9783.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gomato",
+            "certificate_hash": "f405489ff5834c4e5d8a0937a18c717008452ddb"
+          }
+        },
+        {
+          "client_id": "119553069252-3qactisd58coletpslt8qc78251b1p9g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4oY-gVeNFDCPilEIurhp8W0HQ-Y32UNM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "119553069252-3qactisd58coletpslt8qc78251b1p9g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
