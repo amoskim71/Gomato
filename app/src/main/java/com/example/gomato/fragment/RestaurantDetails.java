@@ -177,7 +177,7 @@ public class RestaurantDetails extends Fragment implements RestaurantDetailsView
                 break;
 
             case 3:
-                viewIntent.setData(Uri.parse(restaurantDetailsViewModel.getZomatoDeepLink()));
+                viewIntent.setData(Uri.parse("https://github.com/Ranawatt/Gomato"));
                 break;
         }
 
@@ -233,10 +233,10 @@ public class RestaurantDetails extends Fragment implements RestaurantDetailsView
     private ArrayList<ItemsAdapter.ItemInfo> getItems() {
 
         ArrayList<ItemsAdapter.ItemInfo> arrayList = new ArrayList<>(5);
-        arrayList.add(new ItemsAdapter.ItemInfo("Menu", R.drawable.restaurant_menu));
-        arrayList.add(new ItemsAdapter.ItemInfo("Photo", R.drawable.food_icon));
-        arrayList.add(new ItemsAdapter.ItemInfo("Website", R.drawable.web_icon));
-        arrayList.add(new ItemsAdapter.ItemInfo("Zomato App", R.drawable.link_icon));
+        arrayList.add(new ItemsAdapter.ItemInfo(getString(R.string.menu), R.drawable.restaurant_menu));
+        arrayList.add(new ItemsAdapter.ItemInfo(getString(R.string.food_image), R.drawable.food_icon));
+        arrayList.add(new ItemsAdapter.ItemInfo(getString(R.string.website_url), R.drawable.web_icon));
+        arrayList.add(new ItemsAdapter.ItemInfo(getString(R.string.project_link), R.drawable.link_icon));
 
         return arrayList;
     }

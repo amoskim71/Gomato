@@ -70,7 +70,7 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecycl
             binder.getCatCardViewModel().setName(restaurant.getName());
             binder.getCatCardViewModel().setLocation(restaurant.getLocation().getAddress());
             binder.getCatCardViewModel().setCuisine(restaurant.getCuisines());
-            binder.getCatCardViewModel().setFeatureImage(restaurant.getFeaturedImage());
+            binder.getCatCardViewModel().setFeatureImage(restaurant.getThumb());
         }
 
         private View.OnClickListener clickListener = new View.OnClickListener() {

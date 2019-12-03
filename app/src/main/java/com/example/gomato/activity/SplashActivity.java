@@ -11,6 +11,10 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Looper;
+import android.util.Log;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.example.gomato.BuildConfig;
 import com.example.gomato.R;
@@ -52,6 +56,10 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        getWindow().setStatusBarColor(getResources().getColor(R.color.colorSplash));
+        getWindow().setFlags(WindowManager.LayoutParams.ANIMATION_CHANGED,
+                WindowManager.LayoutParams.FLAG_LAYOUT_ATTACHED_IN_DECOR);
+//
         DaggerNetworkComponent.builder()
                 .networkModule(new NetworkModule(BuildConfig.ZOMATO_BASE_URL))
                 .build()
@@ -167,6 +175,7 @@ public class SplashActivity extends AppCompatActivity {
                         categoryResponse = catRes;
                         Gson gson = new GsonBuilder().setPrettyPrinting().create();
                         String jsonStr = gson.toJson(categoryResponse.getCategories());
+                        Log.d("Category Response",jsonStr);
                         Timber.d("The category has been received: %s", categoryResponse.getCategories().size());
                     }
 

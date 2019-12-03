@@ -12,6 +12,7 @@ import android.view.MenuItem;
 
 import com.example.gomato.R;
 
+import com.example.gomato.animator.ZoomOutPageTransformer;
 import com.example.gomato.common.Analytics;
 import com.example.gomato.common.SearchTypes;
 import com.example.gomato.database.CacheDB;
@@ -40,7 +41,7 @@ public class DashboardActivity extends AppCompatActivity implements IRestaurantA
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         dashboardBinder = DataBindingUtil.setContentView(this, R.layout.activity_dashboard);
-
+        getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimary));
         //Fetch the data received from the splash screen
         locationCoordinates = Parcels.unwrap(getIntent().getBundleExtra("data").getParcelable("location"));
         CategoryResponse categoryResponse = Parcels.unwrap(getIntent().getBundleExtra("data").getParcelable("categoryResponse"));
@@ -58,13 +59,13 @@ public class DashboardActivity extends AppCompatActivity implements IRestaurantA
         dashboardBinder.container.addOnPageChangeListener(
                 new TabLayout.TabLayoutOnPageChangeListener(dashboardBinder.tabs));
         dashboardBinder.tabs.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(dashboardBinder.container));
-
         dashboardBinder.tabs.setSelectedTabIndicatorColor(Color.YELLOW);
-
+        dashboardBinder.container.setPageTransformer(true, new ZoomOutPageTransformer());
         //Analytics information
-        Analytics.setAnalyiticsFor("DemoUser");
+        Analytics.setAnalyiticsFor("GomatoUser");
         Analytics.setCurrentScreen(this, "Dashboard");
-        Analytics.setUserAction(Analytics.EVENT_APP_START, Analytics.PARAM_APP_START, "DemoUser");
+        Analytics.setUserAction(Analytics.EVENT_APP_START, Analytics.PARAM_APP_START, "GomatoUser");
+
     }
 
 

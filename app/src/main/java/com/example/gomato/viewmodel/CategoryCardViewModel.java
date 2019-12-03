@@ -68,7 +68,7 @@ public class CategoryCardViewModel extends BaseObservable {
         @BindingAdapter({"featureImage", "cuisines"})
         public static void featureImage(ImageView imageView, String url, String cuisines) {
 
-            //If URL has been provided, then load using Picasso
+            //If URL has been provided, then load using Glide
             if(!TextUtils.isEmpty(url)) {
                 Glide.with(imageView.getContext())
                         .load(url)

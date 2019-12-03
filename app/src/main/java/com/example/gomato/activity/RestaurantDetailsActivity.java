@@ -2,7 +2,10 @@ package com.example.gomato.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActionBar;
 import android.os.Bundle;
+import android.view.View;
+import android.view.WindowManager;
 
 import com.example.gomato.R;
 import com.example.gomato.common.Analytics;
@@ -16,6 +19,7 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_details);
+
         Bundle bundle = new Bundle();
         bundle.putString("resid", getIntent().getStringExtra("resid"));
         bundle.putString("rName", getIntent().getStringExtra("rName"));

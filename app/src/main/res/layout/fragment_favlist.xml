@@ -26,9 +26,9 @@
                 android:id="@+id/cv_fav_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dimen_8"
-                android:layout_marginTop="@dimen/dimen_8"
-                android:layout_marginEnd="@dimen/dimen_8">
+                android:layout_marginStart="@dimen/dimen_6"
+                android:layout_marginTop="@dimen/dimen_6"
+                android:layout_marginEnd="@dimen/dimen_6">
 
                 <RelativeLayout
                     android:id="@+id/rl_fav_inner_container"
