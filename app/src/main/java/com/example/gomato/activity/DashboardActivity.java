@@ -110,6 +110,7 @@ public class DashboardActivity extends AppCompatActivity implements IRestaurantA
         launchIntent.putExtra("resid", restaurant.getId());
         launchIntent.putExtra("rName", restaurant.getName());
         launchIntent.putExtra("rCuisine", restaurant.getCuisines());
+        launchIntent.putExtra("rFeatureImage",restaurant.getThumb());
         startActivity(launchIntent);
     }
 
