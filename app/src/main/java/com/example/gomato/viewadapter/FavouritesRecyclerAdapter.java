@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.gomato.R;
 import com.example.gomato.common.DefaultCuisineImage;
 import com.example.gomato.databinding.CardFavouriteInfoBinding;
@@ -94,8 +95,14 @@ public class FavouritesRecyclerAdapter extends RecyclerView.Adapter<FavouritesRe
             binder.tvFavCuisine.setText(data.getResCuisines());
 
             String cuisine = data.getResCuisines().split(",")[0];
-            binder.ivFavImage.setImageDrawable(ContextCompat.getDrawable(binder.ivFavImage.getContext(),
-                    DefaultCuisineImage.getCuisineImage(cuisine)));
+            if(data.getResImages() == null){
+                binder.ivFavImage.setImageDrawable(ContextCompat.getDrawable(binder.ivFavImage.getContext(),
+                        DefaultCuisineImage.getCuisineImage(cuisine)));
+            }else{
+                Glide.with(itemView).load(data.getResImages())
+                        .placeholder(R.drawable.default_card_bg)
+                        .into(binder.ivFavImage);
+            }
         }
 
         private View.OnClickListener clickListener = new View.OnClickListener() {
@@ -110,6 +117,7 @@ public class FavouritesRecyclerAdapter extends RecyclerView.Adapter<FavouritesRe
                     restaurant.setName(data.getResName());
                     restaurant.setId(data.getResId());
                     restaurant.setCuisines(data.getResCuisines());
+                    restaurant.setThumb(data.getResImages());
 
                     restaurantAction.onClick(restaurant);
                 }

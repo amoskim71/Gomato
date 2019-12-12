@@ -22,6 +22,7 @@ import com.example.gomato.model.LocationCoordinates;
 import com.example.gomato.model.categories.CategoryResponse;
 import com.example.gomato.model.search.Restaurant;
 import com.example.gomato.viewadapter.DashboardPageAdapter;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.tabs.TabLayout;
 
 import org.parceler.Parcels;
@@ -59,7 +60,7 @@ public class DashboardActivity extends AppCompatActivity implements IRestaurantA
         dashboardBinder.container.addOnPageChangeListener(
                 new TabLayout.TabLayoutOnPageChangeListener(dashboardBinder.tabs));
         dashboardBinder.tabs.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(dashboardBinder.container));
-        dashboardBinder.tabs.setSelectedTabIndicatorColor(Color.YELLOW);
+        dashboardBinder.tabs.setSelectedTabIndicatorColor(Color.TRANSPARENT);
         dashboardBinder.container.setPageTransformer(true, new ZoomOutPageTransformer());
         //Analytics information
         Analytics.setAnalyiticsFor("GomatoUser");

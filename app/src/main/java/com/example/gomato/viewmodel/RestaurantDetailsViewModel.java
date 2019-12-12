@@ -35,6 +35,7 @@ public class RestaurantDetailsViewModel extends BaseObservable {
     private ObservableField<Integer> restaurantDelivering;
     private ObservableField<String> restaurantExpense;
     private ObservableField<String> restaurantCuisines;
+    private ObservableField<String> restaurantImages;
 
     public RestaurantDetailsViewModel(IDetailsAction detailsAction) {
 
@@ -46,6 +47,7 @@ public class RestaurantDetailsViewModel extends BaseObservable {
         restaurantDelivering = new ObservableField<>();
         restaurantExpense = new ObservableField<>();
         restaurantCuisines = new ObservableField<>();
+        restaurantImages = new ObservableField<>();
     }
 
     public void getRestaurantDetails(final String resId) {
@@ -99,12 +101,13 @@ public class RestaurantDetailsViewModel extends BaseObservable {
         return  restaurantDetailsModel.getRestaurantId();
     }
 
+
     public boolean isFavouriteRestaurant() {
         return this.isFavourite;
     }
 
-    public void addFavourite(String id, String name, String loc, String cuisine, Favourites.ITransactionStatus status) {
-        Favourites.addFavourite(id, name, loc, cuisine, status);
+    public void addFavourite(String id, String name, String loc, String cuisine, String resImages, Favourites.ITransactionStatus status) {
+        Favourites.addFavourite(id, name, loc, cuisine, resImages, status);
         isFavourite = true;
     }
 
@@ -154,8 +157,17 @@ public class RestaurantDetailsViewModel extends BaseObservable {
         return restaurantCuisines;
     }
 
+    @Bindable
+    public ObservableField<String> getRestaurantImages(){
+        return restaurantImages;
+    }
+
     private void setRestaurantName(String restaurantName) {
         this.restaurantName.set(restaurantName);
+    }
+
+    public void setRestaurantImages(String restaurantImages) {
+        this.restaurantImages.set(String.valueOf(restaurantImages));
     }
 
     private void setRestaurantLocation(String restaurantLocation) {
@@ -186,5 +198,6 @@ public class RestaurantDetailsViewModel extends BaseObservable {
         setRestaurantDelivering(restaurantResponse.getIsDeliveringNow());
         setRestaurantExpense(Integer.toString(restaurantResponse.getAverageCostForTwo()));
         setRestaurantCuisines(restaurantResponse.getCuisines());
+        setRestaurantImages(restaurantResponse.getThumb());
     }
 }

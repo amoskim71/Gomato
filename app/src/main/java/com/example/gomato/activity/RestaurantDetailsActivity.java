@@ -19,8 +19,9 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_details);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
-                WindowManager.LayoutParams.FLAG_LAYOUT_ATTACHED_IN_DECOR);
+        getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimary));
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
         Bundle bundle = new Bundle();
         bundle.putString("resid", getIntent().getStringExtra("resid"));

@@ -8,4 +8,7 @@
     <color name="pureBlack">#000000</color>
     <color name="colorOrange">#FFFF3D00</color>
     <color name="colorBlue">#FF0E31E4</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorGold">#FAB728</color>
+    <color name="colorIcon">#D704FC08</color>
 </resources>

@@ -26,7 +26,7 @@ public class Favourites {
         void onFavListRetrieved(LinkedList<FavouriteData> favouriteDataList);
     }
 
-    public static void addFavourite(String resId, String resName, String resLocation, String resCuisines,
+    public static void addFavourite(String resId, String resName, String resLocation, String resCuisines, String resImages,
                                     ITransactionStatus callbackStatus) {
 
 
@@ -45,6 +45,7 @@ public class Favourites {
                         data.setResName(resName);
                         data.setResCuisines(resCuisines);
                         data.setResLocation(resLocation);
+                        data.setResImages(resImages);
 
                     } else {
 
@@ -55,6 +56,7 @@ public class Favourites {
                         newData.setResName(resName);
                         newData.setResCuisines(resCuisines);
                         newData.setResLocation(resLocation);
+                        newData.setResImages(resImages);
                     }
 
                     emitter.onNext(true);

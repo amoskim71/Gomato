@@ -15,6 +15,7 @@ public class FavouriteData extends RealmObject {
     private String resName;
     private String resLocation;
     private String resCuisines;
+    private String resImages;
 
     public FavouriteData() {
         super();
@@ -27,6 +28,7 @@ public class FavouriteData extends RealmObject {
         this.resName = model.resName;
         this.resCuisines = model.resCuisines;
         this.resLocation = model.resLocation;
+        this.resImages = model.resImages;
     }
 
     public long getId() {
@@ -67,5 +69,13 @@ public class FavouriteData extends RealmObject {
 
     public void setResCuisines(String resCuisines) {
         this.resCuisines = resCuisines;
+    }
+
+    public String getResImages() {
+        return resImages;
+    }
+
+    public void setResImages(String resImages) {
+        this.resImages = resImages;
     }
 }

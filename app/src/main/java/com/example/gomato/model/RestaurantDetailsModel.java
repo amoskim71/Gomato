@@ -76,7 +76,7 @@ public class RestaurantDetailsModel {
     }
 
     public String getZomatoLink() {
-        return restaurantResponse.getDeeplink();
+        return restaurantResponse.getThumb();
     }
 
     public String getRestaurantId() {

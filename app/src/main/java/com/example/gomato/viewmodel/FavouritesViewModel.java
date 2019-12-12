@@ -10,11 +10,13 @@ public class FavouritesViewModel extends BaseObservable {
 
     private ObservableField<String> headerTitle;
     private ObservableField<String> headerSubTitle;
+    private ObservableField<String> restImages;
 
     public FavouritesViewModel() {
 
         headerTitle = new ObservableField<>();
         headerSubTitle = new ObservableField<>();
+        restImages = new ObservableField<>();
     }
 
     @Bindable
@@ -33,6 +35,15 @@ public class FavouritesViewModel extends BaseObservable {
 
     public void setHeaderSubTitle(String headerSubTitle) {
         this.headerSubTitle.set(headerSubTitle);
+    }
+
+    @Bindable
+    public ObservableField<String> getRestImages() {
+        return restImages;
+    }
+
+    public void setRestImages(String restImages) {
+        this.restImages.set(restImages);
     }
 
     public void getFavouriteList(Favourites.ITransactionStatus callback) {

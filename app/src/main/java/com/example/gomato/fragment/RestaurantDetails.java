@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,16 +20,13 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.bumptech.glide.Glide;
 import com.example.gomato.R;
-import com.example.gomato.common.DefaultCuisineImage;
 import com.example.gomato.databinding.FragmentRestaurantDetailsBinding;
 import com.example.gomato.model.Favourites;
 import com.example.gomato.model.favourite.FavouriteData;
-import com.example.gomato.model.search.Restaurant;
 import com.example.gomato.viewadapter.ItemsAdapter;
 import com.example.gomato.viewadapter.ReviewAdapter;
 import com.example.gomato.viewmodel.RestaurantDetailsViewModel;
 import com.google.android.material.appbar.AppBarLayout;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -130,6 +126,8 @@ public class RestaurantDetails extends Fragment implements RestaurantDetailsView
                             restaurantDetailsViewModel.getRestaurantName().get(),
                             restaurantDetailsViewModel.getRestaurantLocation().get(),
                             restaurantDetailsViewModel.getRestaurantCuisines().get(),
+                            restaurantDetailsViewModel.getRestaurantImages().get(),
+//                            restaurantDetailsViewModel.getRestaurantExpense().get(),
                             callbackStatus);
                 }
                 break;
