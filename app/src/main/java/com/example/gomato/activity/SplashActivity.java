@@ -96,6 +96,7 @@ public class SplashActivity extends AppCompatActivity {
                 } else {
                     location = null;
                     fetchDataFromZomatoToProceed();
+                    launchNextScreen();
                 }
                 break;
 
@@ -145,11 +146,13 @@ public class SplashActivity extends AppCompatActivity {
                     } else {
                         location = loc;
                         fetchDataFromZomatoToProceed();
+                        launchNextScreen();
                     }
                 })
                 .addOnFailureListener(e -> {
                     location = null;
                     fetchDataFromZomatoToProceed();
+                    launchNextScreen();
                 });
     }
 
@@ -161,6 +164,7 @@ public class SplashActivity extends AppCompatActivity {
             location = locationResult.getLastLocation();
             locationProviderClient.removeLocationUpdates(locationCallback);
             fetchDataFromZomatoToProceed();
+            launchNextScreen();
         }
     };
 
@@ -194,7 +198,7 @@ public class SplashActivity extends AppCompatActivity {
     private void launchNextScreen() {
 
         LocationCoordinates locationCoordinates = new LocationCoordinates();
-        locationCoordinates.setLongitude(null == location ? Double.parseDouble(BuildConfig.DEFAULT_LOGITUDE)
+        locationCoordinates.setLongitude(null == location ? Double.parseDouble(BuildConfig.DEFAULT_LONGITUDE)
                 : location.getLongitude());
 
         locationCoordinates.setLatitude(null == location ? Double.parseDouble(BuildConfig.DEFAULT_LATITUDE)

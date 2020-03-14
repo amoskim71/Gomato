@@ -1,14 +1,22 @@
 package com.example.gomato.viewmodel;
 
+import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import androidx.databinding.BindingAdapter;
 import androidx.databinding.ObservableField;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.Request;
+import com.bumptech.glide.request.target.SizeReadyCallback;
+import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.request.transition.Transition;
 import com.example.gomato.R;
 import com.example.gomato.common.DefaultCuisineImage;
 
@@ -72,6 +80,7 @@ public class CategoryCardViewModel extends BaseObservable {
             if(!TextUtils.isEmpty(url)) {
                 Glide.with(imageView.getContext())
                         .load(url)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .placeholder(R.drawable.default_card_bg)
                         .error(R.drawable.default_card_bg)
                         .into(imageView);

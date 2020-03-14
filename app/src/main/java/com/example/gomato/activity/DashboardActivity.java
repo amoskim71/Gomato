@@ -2,6 +2,7 @@ package com.example.gomato.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import android.content.Intent;
@@ -22,7 +23,6 @@ import com.example.gomato.model.LocationCoordinates;
 import com.example.gomato.model.categories.CategoryResponse;
 import com.example.gomato.model.search.Restaurant;
 import com.example.gomato.viewadapter.DashboardPageAdapter;
-import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.tabs.TabLayout;
 
 import org.parceler.Parcels;
@@ -48,6 +48,7 @@ public class DashboardActivity extends AppCompatActivity implements IRestaurantA
         CategoryResponse categoryResponse = Parcels.unwrap(getIntent().getBundleExtra("data").getParcelable("categoryResponse"));
 
         //Set the toolbar
+
         setSupportActionBar(dashboardBinder.toolbar);
 
         //Create the state pager adapter

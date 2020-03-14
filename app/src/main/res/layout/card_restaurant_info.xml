@@ -15,6 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/ll_card_restaurant_info"
+        android:background="?android:selectableItemBackground"
         android:orientation="vertical">
 
         <androidx.cardview.widget.CardView

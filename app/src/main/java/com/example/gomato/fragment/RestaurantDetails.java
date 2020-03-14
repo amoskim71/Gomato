@@ -1,6 +1,11 @@
 package com.example.gomato.fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,12 +18,19 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.palette.graphics.Palette;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.example.gomato.R;
 import com.example.gomato.databinding.FragmentRestaurantDetailsBinding;
 import com.example.gomato.model.Favourites;
@@ -33,13 +45,32 @@ import java.util.LinkedList;
 
 public class RestaurantDetails extends Fragment implements RestaurantDetailsViewModel.IDetailsAction,
         ItemsAdapter.IIteamAction {
+//
+    public static final String ARG_ITEM_ID = "item_id";
+    public static final String ARG_ITEM_TRANSITION_ID = "item_transition_id";
+    public static final String ARG_ITEM_COLOR_PALETTE = "image_color_palette";
 
     private FragmentRestaurantDetailsBinding binder;
     private RestaurantDetailsViewModel restaurantDetailsViewModel;
     private ItemsAdapter adapter;
     private ReviewAdapter reviewAdapter;
+//    private  mItem;
+//    private String mTransitionName;
+    public static int mColorPalette;
 
+    private RestaurantDetails context = this;
     private String restaurantName;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+//        if (getArguments() != null && getArguments().containsKey(ARG_ITEM_ID)) {
+////            mItem = getArguments().getParcelable(ARG_ITEM_ID);
+////            mTransitionName = getArguments().getString(ARG_ITEM_TRANSITION_ID);
+//            mColorPalette = getArguments().getInt(ARG_ITEM_COLOR_PALETTE);
+//        }
+    }
 
     @Nullable
     @Override
@@ -60,7 +91,32 @@ public class RestaurantDetails extends Fragment implements RestaurantDetailsView
 
         Glide.with(getActivity())
                 .load(getArguments().getString("rFeatureImage"))
-                .centerCrop().into(binder.ivRestDetailsHeader);
+                .centerCrop()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+//                .listener(new RequestListener<Drawable>() {
+//                    @Override
+//                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+//                        getActivity().supportPostponeEnterTransition();
+//                        return false;
+//                    }
+//
+//                    @Override
+//                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+//                        getActivity().supportStartPostponedEnterTransition();
+//                        if (resource != null) {
+//                            Drawable drawable = context.getResources().getDrawable(R.drawable.restaurant_menu);
+//                            Bitmap bitmap = ((BitmapDrawable)drawable).getBitmap();
+//
+//                            Palette palette = Palette.from(bitmap).generate();
+//                            // Use generated instance
+//                            mColorPalette = palette.getMutedColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryDark));
+//
+////                            binder.ivRestDetailsHeader.setBackgroundColor(mColorPalette);
+//                        }
+//                        return false;
+//                    }
+//                })
+                .into(binder.ivRestDetailsHeader);
         restaurantDetailsViewModel = new RestaurantDetailsViewModel(this);
         binder.cardLayoutRestDetailsHeader.setRestDetails(restaurantDetailsViewModel);
 

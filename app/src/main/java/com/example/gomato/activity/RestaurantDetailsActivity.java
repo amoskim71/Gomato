@@ -1,11 +1,10 @@
 package com.example.gomato.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ActionBar;
 import android.os.Bundle;
-import android.view.View;
 import android.view.WindowManager;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.gomato.R;
 import com.example.gomato.common.Analytics;

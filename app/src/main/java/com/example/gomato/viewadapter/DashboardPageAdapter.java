@@ -1,7 +1,6 @@
 package com.example.gomato.viewadapter;
 
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
@@ -12,9 +11,12 @@ import com.example.gomato.fragment.FavouriteList;
 import com.example.gomato.fragment.IRestaurantAction;
 import com.example.gomato.model.LocationCoordinates;
 
+import org.jetbrains.annotations.NotNull;
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.ResourceBundle;
 
 public class DashboardPageAdapter extends FragmentStatePagerAdapter {
 
@@ -63,7 +65,6 @@ public class DashboardPageAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-
         Bundle bundle = new Bundle();
         bundle.putString(CategoryList.KEY_HEADER_TITLE, pageInfoList.get(position).getHeaderTitle());
         bundle.putString(CategoryList.KEY_HEADER_SUB_TITLE, pageInfoList.get(position).getHeaderSubTitle());
