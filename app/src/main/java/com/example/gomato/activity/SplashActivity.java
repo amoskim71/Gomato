@@ -4,17 +4,25 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Animatable;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 
 import com.example.gomato.BuildConfig;
 import com.example.gomato.R;
@@ -52,6 +60,9 @@ public class SplashActivity extends AppCompatActivity {
     private CategoryResponse categoryResponse;
     private Location location;
     private FusedLocationProviderClient locationProviderClient;
+    private ImageView iconImage;
+    private AnimatedVectorDrawableCompat animatedVectorDrawableCompat;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,13 +70,23 @@ public class SplashActivity extends AppCompatActivity {
         getWindow().setStatusBarColor(getResources().getColor(R.color.colorSplash));
         getWindow().setFlags(WindowManager.LayoutParams.ANIMATION_CHANGED,
                 WindowManager.LayoutParams.FLAG_LAYOUT_ATTACHED_IN_DECOR);
-//
+        iconImage = findViewById(R.id.iconImage);
+        animatedVectorDrawableCompat = AnimatedVectorDrawableCompat.create(this,R.drawable.ic_animate);
+        iconImage.setImageDrawable(animatedVectorDrawableCompat);
+        animatedVectorDrawableCompat.start();
+        new Thread(()-> {
+                try {
+                    Thread.sleep(20000);
+                    requestLocationAccess();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+        }).start();
         DaggerNetworkComponent.builder()
                 .networkModule(new NetworkModule(BuildConfig.ZOMATO_BASE_URL))
                 .build()
                 .inject(this);
-
-        requestLocationAccess();
+//        requestLocationAccess();
     }
 
     @Override

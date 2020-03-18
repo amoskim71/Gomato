@@ -14,6 +14,7 @@
         android:layout_gravity="center">
 
     <ImageView android:layout_width="@dimen/dimen_45"
+        android:id="@+id/iconImage"
         android:layout_height="@dimen/dimen_45"
         android:src="@drawable/ic_lunchbox"
         android:layout_gravity="center_horizontal" />
