@@ -61,7 +61,7 @@ public class SplashActivity extends AppCompatActivity {
     private Location location;
     private FusedLocationProviderClient locationProviderClient;
     private ImageView iconImage;
-    private AnimatedVectorDrawableCompat animatedVectorDrawableCompat;
+//    private AnimatedVectorDrawableCompat animatedVectorDrawableCompat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,22 +71,22 @@ public class SplashActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.ANIMATION_CHANGED,
                 WindowManager.LayoutParams.FLAG_LAYOUT_ATTACHED_IN_DECOR);
         iconImage = findViewById(R.id.iconImage);
-        animatedVectorDrawableCompat = AnimatedVectorDrawableCompat.create(this,R.drawable.ic_animate);
-        iconImage.setImageDrawable(animatedVectorDrawableCompat);
-        animatedVectorDrawableCompat.start();
-        new Thread(()-> {
-                try {
-                    Thread.sleep(20000);
-                    requestLocationAccess();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-        }).start();
+//        animatedVectorDrawableCompat = AnimatedVectorDrawableCompat.create(this,R.drawable.ic_animate);
+//        iconImage.setImageDrawable(animatedVectorDrawableCompat);
+//        animatedVectorDrawableCompat.start();
+//        new Thread(()-> {
+//                try {
+//                    Thread.sleep(20000);
+//                    requestLocationAccess();
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//        }).start();
         DaggerNetworkComponent.builder()
                 .networkModule(new NetworkModule(BuildConfig.ZOMATO_BASE_URL))
                 .build()
                 .inject(this);
-//        requestLocationAccess();
+        requestLocationAccess();
     }
 
     @Override
