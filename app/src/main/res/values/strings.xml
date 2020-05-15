@@ -28,6 +28,8 @@
     <string name="rest_fav_cannot_marked">The requested action could not be performed.</string>
     <string name="rest_fav_unmarked">Restaurant removed as favourite</string>
 
+    <string name="shortcut_long_label">Delivery</string>
+    <string name="shortcut_short_label">Take Away</string>
 
 
 </resources>

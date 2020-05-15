@@ -1,5 +1,6 @@
 package com.example.gomato.activity;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -10,9 +11,13 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.ShortcutInfo;
+import android.content.pm.ShortcutManager;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.Icon;
 import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
@@ -40,6 +45,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import org.parceler.Parcels;
+
+import java.util.Collections;
 
 import javax.inject.Inject;
 
@@ -71,6 +78,7 @@ public class SplashActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.ANIMATION_CHANGED,
                 WindowManager.LayoutParams.FLAG_LAYOUT_ATTACHED_IN_DECOR);
         iconImage = findViewById(R.id.iconImage);
+
 //        animatedVectorDrawableCompat = AnimatedVectorDrawableCompat.create(this,R.drawable.ic_animate);
 //        iconImage.setImageDrawable(animatedVectorDrawableCompat);
 //        animatedVectorDrawableCompat.start();

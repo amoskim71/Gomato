@@ -1,12 +1,18 @@
 package com.example.gomato.activity;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import android.content.Intent;
+import android.content.pm.ShortcutInfo;
+import android.content.pm.ShortcutManager;
 import android.graphics.Color;
+import android.graphics.drawable.Icon;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,6 +34,7 @@ import com.google.android.material.tabs.TabLayout;
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import timber.log.Timber;
 
@@ -37,7 +44,8 @@ public class DashboardActivity extends AppCompatActivity implements IRestaurantA
 
     private ActivityDashboardBinding dashboardBinder;
     private LocationCoordinates locationCoordinates;
-
+    private ShortcutManager shortcutManager;
+    @RequiresApi(api = Build.VERSION_CODES.N_MR1)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +56,6 @@ public class DashboardActivity extends AppCompatActivity implements IRestaurantA
         CategoryResponse categoryResponse = Parcels.unwrap(getIntent().getBundleExtra("data").getParcelable("categoryResponse"));
 
         //Set the toolbar
-
         setSupportActionBar(dashboardBinder.toolbar);
 
         //Create the state pager adapter
@@ -68,6 +75,18 @@ public class DashboardActivity extends AppCompatActivity implements IRestaurantA
         Analytics.setCurrentScreen(this, "Dashboard");
         Analytics.setUserAction(Analytics.EVENT_APP_START, Analytics.PARAM_APP_START, "GomatoUser");
 
+        shortcutManager = getSystemService(ShortcutManager.class);
+
+        Intent dynamicIntent = new Intent(this,SearchActivity.class);
+        dynamicIntent.setAction(Intent.ACTION_VIEW);
+        ShortcutInfo dynamicShortcut = new ShortcutInfo.Builder(this, "dynamic_shortcut")
+                //Define all the shortcut’s characteristics//
+                .setShortLabel(getString(R.string.shortcut_short_label))
+                .setLongLabel(getString(R.string.shortcut_long_label))
+                .setIcon(Icon.createWithResource(this, R.drawable.ic_delivery))
+                .setIntent(dynamicIntent)
+                .build();
+        shortcutManager.setDynamicShortcuts(Collections.singletonList(dynamicShortcut));
     }
 
 
@@ -80,17 +99,13 @@ public class DashboardActivity extends AppCompatActivity implements IRestaurantA
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch(item.getItemId()) {
-
             case R.id.menu_source_search:
                 launchSearchActivity();
                 break;
-
             default:
                 return super.onOptionsItemSelected(item);
         }
-
         return true;
     }
 
@@ -151,7 +166,6 @@ public class DashboardActivity extends AppCompatActivity implements IRestaurantA
                 "Favourite restaurants",
                 SearchTypes.SEARCH_FAVOURITE
         ));
-
         return pageInfos;
     }
 }
