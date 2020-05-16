@@ -77,7 +77,8 @@ public class DashboardActivity extends AppCompatActivity implements IRestaurantA
 
         shortcutManager = getSystemService(ShortcutManager.class);
 
-        Intent dynamicIntent = new Intent(this,SearchActivity.class);
+        Intent dynamicIntent = new Intent(this, SearchActivity.class);
+//        dynamicIntent.putExtra("location", Parcels.wrap(locationCoordinates));
         dynamicIntent.setAction(Intent.ACTION_VIEW);
         ShortcutInfo dynamicShortcut = new ShortcutInfo.Builder(this, "dynamic_shortcut")
                 //Define all the shortcut’s characteristics//
