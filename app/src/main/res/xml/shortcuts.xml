@@ -11,21 +11,17 @@
             android:targetPackage="com.example.gomato.activity"
             android:targetClass="com.example.gomato.activity.SearchActivity" />
 
+    </shortcut>
+    <shortcut
+        android:shortcutId="restaurantdetails"
+        android:enabled="true"
+        android:icon="@drawable/ic_restaurantdetail"
+        android:shortcutShortLabel="@string/dine_out"
+        android:shortcutLongLabel="@string/shortcut_long_label">
         <intent
             android:action="android.intent.action.VIEW"
             android:targetPackage="com.example.gomato.activity"
             android:targetClass="com.example.gomato.activity.RestaurantDetailsActivity" />
-    </shortcut>
-<!--    <shortcut-->
-<!--        android:shortcutId="restaurantdetails"-->
-<!--        android:enabled="true"-->
-<!--        android:icon="@drawable/ic_restaurantdetail"-->
-<!--        android:shortcutShortLabel="@string/dine_out"-->
-<!--        android:shortcutLongLabel="@string/shortcut_long_label">-->
-<!--        <intent-->
-<!--            android:action="android.intent.action.VIEW"-->
-<!--            android:targetPackage="com.example.gomato.activity"-->
-<!--            android:targetClass="com.example.gomato.activity.RestaurantDetailsActivity" />-->
 
-<!--    </shortcut>-->
+    </shortcut>
 </shortcuts>

@@ -34,6 +34,7 @@ import com.google.android.material.tabs.TabLayout;
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 import timber.log.Timber;
@@ -87,7 +88,14 @@ public class DashboardActivity extends AppCompatActivity implements IRestaurantA
                 .setIcon(Icon.createWithResource(this, R.drawable.ic_delivery))
                 .setIntent(dynamicIntent)
                 .build();
-        shortcutManager.setDynamicShortcuts(Collections.singletonList(dynamicShortcut));
+        Intent staticIntent = new Intent(this, RestaurantDetailsActivity.class);
+        staticIntent.setAction(Intent.ACTION_VIEW);
+        ShortcutInfo staticShortcut = new ShortcutInfo.Builder(this, "restaurant_details")
+                .setShortLabel(getString(R.string.dine_out))
+                .setIcon(Icon.createWithResource(this, R.drawable.ic_restaurantdetail))
+                .setIntent(staticIntent)
+                .build();
+        shortcutManager.setDynamicShortcuts(Arrays.asList(dynamicShortcut,staticShortcut));
     }
 
 

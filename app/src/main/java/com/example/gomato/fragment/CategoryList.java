@@ -76,11 +76,9 @@ public class CategoryList extends Fragment implements CategoryViewModel.ISearchR
 
     @Override
     public void onClick(Restaurant restaurant) {
-
         if(null == restaurantActionImpl) {
             return;
         }
-
         restaurantActionImpl.onClick(restaurant);
     }
 }

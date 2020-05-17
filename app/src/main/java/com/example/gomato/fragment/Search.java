@@ -49,7 +49,7 @@ public class Search extends Fragment implements SearchAdapter.ISearchAction {
         binder.rvSearchResult.setAdapter(searchAdapter);
 
         disposableObserver = new ReactSearch().getReactiveSearcher(binder.svSearchQuery)
-                .debounce(1000, TimeUnit.MILLISECONDS)
+                .debounce(2000, TimeUnit.MILLISECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableObserver<String>() {

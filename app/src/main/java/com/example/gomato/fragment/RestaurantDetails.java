@@ -86,7 +86,7 @@ public class RestaurantDetails extends Fragment implements RestaurantDetailsView
         String cuisine = getArguments().getString("rCuisine");
 
 
-        cuisine = cuisine.split(",")[0];
+//        cuisine = cuisine.split(",")[0];
 //        binder.ivRestDetailsHeader.setImageDrawable(ContextCompat.getDrawable(binder.ivRestDetailsHeader.getContext(),
 //                DefaultCuisineImage.getCuisineImage(cuisine)));
 
@@ -151,7 +151,8 @@ public class RestaurantDetails extends Fragment implements RestaurantDetailsView
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        reviewAdapter.clean();
+        if (reviewAdapter != null)
+            reviewAdapter.clean();
         restaurantDetailsViewModel.clean();
     }
 
