@@ -70,15 +70,13 @@ public class Search extends Fragment implements SearchAdapter.ISearchAction {
 
                     @Override
                     public void onError(Throwable e) {
-
+                        e.printStackTrace();
                     }
-
                     @Override
                     public void onComplete() {
 
                     }
                 });
-
 
         return binder.getRoot();
     }
