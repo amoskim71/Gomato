@@ -27,30 +27,19 @@ public class IntroActivity extends AppCompatActivity {
     private ViewPager screenPager;
     IntroViewPagerAdapter viewPagerAdapter;
     private TabLayout tabIndicator;
-    private PrefsData prefsData;
     Button btnNext;
     int position = 0 ;
     Button btnGetStarted;
     Animation btnAnim ;
     TextView tvSkip;
+    PrefsData prefsData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Make the activity full screen
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-        prefsData = new PrefsData(this);
-        if (!prefsData.isFirstTimeLaunch()){
-            launchHomeScreen();
-            finish();
-        }
-        
         setContentView(R.layout.activity_intro);
-
-        // hide the action bar
-
-        getSupportActionBar().hide();
 
         // ini views
         btnNext = findViewById(R.id.btn_next);
@@ -60,7 +49,6 @@ public class IntroActivity extends AppCompatActivity {
         tvSkip = findViewById(R.id.tv_skip);
 
         // fill list screen
-
         final List<ScreenItem> mList = new ArrayList<>();
         mList.add(new ScreenItem("Fresh Food","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, consectetur  consectetur adipiscing elit",R.drawable.img1));
         mList.add(new ScreenItem("Fast Delivery","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, consectetur  consectetur adipiscing elit",R.drawable.img2));
@@ -71,8 +59,7 @@ public class IntroActivity extends AppCompatActivity {
         viewPagerAdapter = new IntroViewPagerAdapter(this,mList);
         screenPager.setAdapter(viewPagerAdapter);
 
-        // setup tablayout with viewpager
-
+        // setup tab layout with viewpager
         tabIndicator.setupWithViewPager(screenPager);
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,7 +76,6 @@ public class IntroActivity extends AppCompatActivity {
 
             }
         });
-
 
         tabIndicator.addOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
             @Override
@@ -112,20 +98,14 @@ public class IntroActivity extends AppCompatActivity {
         btnGetStarted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-                //open main activity
-
                 Intent mainActivity = new Intent(getApplicationContext(),DashboardActivity.class);
                 startActivity(mainActivity);
                 // also we need to save a boolean value to storage so next time when the user run the app
                 // we could know that he is already checked the intro screen activity
                 // i'm going to use shared preferences to that process
-                prefsData.setFirstTimeLaunch(false);
                 finish();
             }
         });
-
         // skip button click listener
         tvSkip.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,10 +115,6 @@ public class IntroActivity extends AppCompatActivity {
         });
     }
 
-    private void launchHomeScreen() {
-        Intent mainActivity = new Intent(getApplicationContext(),DashboardActivity.class);
-        startActivity(mainActivity);
-    }
     // show the GET STARTED Button and hide the indicator and the next button
     private void loadLastScreen() {
 

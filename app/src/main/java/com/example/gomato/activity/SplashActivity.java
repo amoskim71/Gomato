@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
+import android.content.res.Resources;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
@@ -31,6 +32,7 @@ import android.widget.ImageView;
 
 import com.example.gomato.BuildConfig;
 import com.example.gomato.R;
+import com.example.gomato.common.PrefsData;
 import com.example.gomato.dagger.DaggerNetworkComponent;
 import com.example.gomato.dagger.NetworkModule;
 import com.example.gomato.model.LocationCoordinates;
@@ -68,16 +70,22 @@ public class SplashActivity extends AppCompatActivity {
     private Location location;
     private FusedLocationProviderClient locationProviderClient;
     private ImageView iconImage;
+    PrefsData prefsData;
 //    private AnimatedVectorDrawableCompat animatedVectorDrawableCompat;
 
+    private boolean flag = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        getWindow().setStatusBarColor(getResources().getColor(R.color.colorSplash));
+        getWindow().setStatusBarColor(getResources().getColor(R.color.colorSplash,getTheme()));
         getWindow().setFlags(WindowManager.LayoutParams.ANIMATION_CHANGED,
                 WindowManager.LayoutParams.FLAG_LAYOUT_ATTACHED_IN_DECOR);
         iconImage = findViewById(R.id.iconImage);
+//        PrefsData prefsData = new PrefsData(this);
+//        if (prefsData.isFirstTimeLaunch()){
+//
+//        }
 
 //        animatedVectorDrawableCompat = AnimatedVectorDrawableCompat.create(this,R.drawable.ic_animate);
 //        iconImage.setImageDrawable(animatedVectorDrawableCompat);
@@ -90,11 +98,19 @@ public class SplashActivity extends AppCompatActivity {
 //                    e.printStackTrace();
 //                }
 //        }).start();
+        prefsData = new PrefsData(this);
+        if(!prefsData.isFirstTimeLaunch()){
+            launchNextScreen();
+            finish();
+        }else{
+            startActivity(new Intent(this,IntroActivity.class));
+        }
         DaggerNetworkComponent.builder()
                 .networkModule(new NetworkModule(BuildConfig.ZOMATO_BASE_URL))
                 .build()
                 .inject(this);
         requestLocationAccess();
+
     }
 
     @Override
@@ -226,6 +242,7 @@ public class SplashActivity extends AppCompatActivity {
 
     private void launchNextScreen() {
 
+        prefsData.setFirstTimeLaunch(false);
         LocationCoordinates locationCoordinates = new LocationCoordinates();
         locationCoordinates.setLongitude(null == location ? Double.parseDouble(BuildConfig.DEFAULT_LONGITUDE)
                 : location.getLongitude());

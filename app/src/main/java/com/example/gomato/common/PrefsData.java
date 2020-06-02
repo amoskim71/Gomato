@@ -2,12 +2,13 @@ package com.example.gomato.common;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 public class PrefsData {
 
-    private SharedPreferences sharedPrefs;
-    private SharedPreferences.Editor editor;
-    private Context mContext;
+    SharedPreferences sharedPrefs;
+    SharedPreferences.Editor editor;
+    Context mContext;
     // shared pref mode
     int PRIVATE_MODE = 0;
 
@@ -18,8 +19,8 @@ public class PrefsData {
 
     public PrefsData(Context mContext) {
         this.mContext = mContext;
+        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
         editor = sharedPrefs.edit();
-        sharedPrefs = mContext.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
     }
 
 
