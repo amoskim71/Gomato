@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Gomato</string>
+
+    <string name="OK">OK</string>
+    <string name="time_icon">時間アイコン</string>
+
+    <string name="restaurant_image">レストランイメージ</string>
+    <string name="delivery">配送</string>
+    <string name="dine_out">ダインアウト</string>
+    <string name="take_away">取り除く</string>
+    <string name="could_not_fetch_generic">詳細を取得できませんでした。後でもう一度やり直してください。</string>
+    <string name="open_now">営業中</string>
+    <string name="closed">閉まっている</string>
+    <string name="search">探す</string>
+    <string name="could_not_find_any_search_result_for_the_given_query">指定されたクエリの検索結果が見つかりませんでした。</string>
+    <string name="performs_the_search_operation">検索操作を実行します</string>
+    <string name="reviews">レビュー</string>
+    <string name="share">Share</string>
+    <string name="share_rest_info">レストラン情報を共有する</string>
+    <string name="powered_by_zomato_api">搭載 Torry Harris</string>
+
+    <string name="project_link">プロジェクトリンク</string>
+    <string name="food_image"> Photos </string>
+    <string name="menu"> Menu </string>
+    <string name="website_url"> Website </string>
+    <string name="favourites">お気に入り</string>
+    <string name="rest_fav_marked">お気に入りとしてマークされたレストラン。</string>
+    <string name="rest_fav_cannot_marked">要求されたアクションを実行できませんでした。</string>
+    <string name="rest_fav_unmarked">お気に入りとして削除されたレストラン</string>
+</resources>
