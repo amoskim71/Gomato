@@ -32,15 +32,13 @@ public class IntroActivity extends AppCompatActivity {
     Button btnGetStarted;
     Animation btnAnim ;
     TextView tvSkip;
-    PrefsData prefsData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Make the activity full screen
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setStatusBarColor(getResources().getColor(R.color.colorSplash,getTheme()));
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         setContentView(R.layout.activity_intro);
-
         // ini views
         btnNext = findViewById(R.id.btn_next);
         btnGetStarted = findViewById(R.id.btn_get_started);
@@ -50,7 +48,7 @@ public class IntroActivity extends AppCompatActivity {
 
         // fill list screen
         final List<ScreenItem> mList = new ArrayList<>();
-        mList.add(new ScreenItem("Fresh Food"," Order Fresh Food Now, that you want to have it ",R.drawable.img1));
+        mList.add(new ScreenItem("Fresh Food"," Order Delicious and Healthy Fresh Food Now, that you want to have it at the best price . ",R.drawable.img1));
         mList.add(new ScreenItem("Fast Delivery"," Get food delivered at your door step within an hour after the ordered time. ",R.drawable.img2));
         mList.add(new ScreenItem("Easy Payment"," Now Payment became so easy, you can do payment by multiple ways through wallet, bank payments, UPI, COD and many more .",R.drawable.img3));
 
@@ -98,7 +96,7 @@ public class IntroActivity extends AppCompatActivity {
         btnGetStarted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent mainActivity = new Intent(getApplicationContext(),DashboardActivity.class);
+                Intent mainActivity = new Intent(getApplicationContext(),SplashActivity.class);
                 startActivity(mainActivity);
                 // also we need to save a boolean value to storage so next time when the user run the app
                 // we could know that he is already checked the intro screen activity

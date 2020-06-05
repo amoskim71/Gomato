@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorSplash"
     tools:context=".activity.IntroActivity">
 
     <androidx.viewpager.widget.ViewPager
@@ -18,16 +19,17 @@
 
     <Button
         android:id="@+id/btn_next"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:layout_marginBottom="16dp"
-        android:background="#fff"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/btn_gradient_style"
         android:drawableRight="@drawable/ic_arrow_forward_black_24dp"
-        android:drawableTint="@color/gradient_start_color"
+        android:drawableTint="@color/colorSplash"
+        android:ellipsize="middle"
         android:text="Next"
-        android:textColor="@color/gradient_start_color"
+        android:textColor="@color/colorWhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

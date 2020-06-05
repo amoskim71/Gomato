@@ -72,21 +72,16 @@ public class SplashActivity extends AppCompatActivity {
     private ImageView iconImage;
     PrefsData prefsData;
 //    private AnimatedVectorDrawableCompat animatedVectorDrawableCompat;
-
-    private boolean flag = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        getWindow().setStatusBarColor(getResources().getColor(R.color.colorSplash,getTheme()));
-        getWindow().setFlags(WindowManager.LayoutParams.ANIMATION_CHANGED,
-                WindowManager.LayoutParams.FLAG_LAYOUT_ATTACHED_IN_DECOR);
+//        getWindow().setStatusBarColor(getResources().getColor(R.color.colorSplash,getTheme()));
+//        getWindow().setFlags(WindowManager.LayoutParams.ANIMATION_CHANGED,
+//                WindowManager.LayoutParams.FLAG_LAYOUT_ATTACHED_IN_DECOR);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+//        getSupportActionBar().hide();
         iconImage = findViewById(R.id.iconImage);
-//        PrefsData prefsData = new PrefsData(this);
-//        if (prefsData.isFirstTimeLaunch()){
-//
-//        }
-
 //        animatedVectorDrawableCompat = AnimatedVectorDrawableCompat.create(this,R.drawable.ic_animate);
 //        iconImage.setImageDrawable(animatedVectorDrawableCompat);
 //        animatedVectorDrawableCompat.start();
@@ -98,19 +93,11 @@ public class SplashActivity extends AppCompatActivity {
 //                    e.printStackTrace();
 //                }
 //        }).start();
-        prefsData = new PrefsData(this);
-        if(!prefsData.isFirstTimeLaunch()){
-            launchNextScreen();
-            finish();
-        }else{
-            startActivity(new Intent(this,IntroActivity.class));
-        }
         DaggerNetworkComponent.builder()
                 .networkModule(new NetworkModule(BuildConfig.ZOMATO_BASE_URL))
                 .build()
                 .inject(this);
         requestLocationAccess();
-
     }
 
     @Override
@@ -151,7 +138,6 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void requestLocationAccess() {
-
         //If the permission has been provided
         if (PackageManager.PERMISSION_GRANTED == ContextCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION)) {
@@ -159,7 +145,6 @@ public class SplashActivity extends AppCompatActivity {
             fetchLocationInformation();
             return;
         }
-
         //Request the permission from the user
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                 LOCATION_REQUEST_CODE);
@@ -242,7 +227,7 @@ public class SplashActivity extends AppCompatActivity {
 
     private void launchNextScreen() {
 
-        prefsData.setFirstTimeLaunch(false);
+
         LocationCoordinates locationCoordinates = new LocationCoordinates();
         locationCoordinates.setLongitude(null == location ? Double.parseDouble(BuildConfig.DEFAULT_LONGITUDE)
                 : location.getLongitude());
@@ -254,11 +239,18 @@ public class SplashActivity extends AppCompatActivity {
         bundle.putParcelable("categoryResponse", Parcels.wrap(categoryResponse));
         bundle.putParcelable("location", Parcels.wrap(locationCoordinates));
 
-        Intent dashboardIntent = new Intent(this, DashboardActivity.class);
-        dashboardIntent.putExtra("data", bundle);
+        prefsData = new PrefsData(this);
+        if(prefsData.isFirstTimeLaunch()){
+            startActivity(new Intent(this,IntroActivity.class));
+            prefsData.setFirstTimeLaunch(false);
+            finish();
+        }else{
+            Intent dashboardIntent = new Intent(this, DashboardActivity.class);
+            dashboardIntent.putExtra("data", bundle);
+            startActivity(dashboardIntent);
+            finish();
+        }
 
-        startActivity(dashboardIntent);
-        finish();
     }
 
 }
