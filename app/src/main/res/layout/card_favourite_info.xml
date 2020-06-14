@@ -4,47 +4,88 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ll_card_fav_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/iv_fav_image"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_fav_restaurant_image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="32dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginBottom="32dp"
-            android:contentDescription="@string/restaurant_image"
-            android:scaleType="fitXY"
-            android:src="@drawable/default_food"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <view
-            android:id="@+id/image_title_cover"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/iv_fav_image"
-            app:layout_constraintStart_toStartOf="@+id/iv_fav_image" />
+            <ImageView
+                android:id="@+id/iv_fav_image"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:contentDescription="@string/restaurant_image"
+                android:requiresFadingEdge="vertical"
+                android:scaleType="center"
+                android:src="@drawable/default_food" />
+
+            <TextView
+                android:id="@+id/tv_fav_name"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_gravity="bottom"
+                android:background="@drawable/tile_cover"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:paddingLeft="@dimen/dimen_8"
+                android:textAlignment="gravity"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_fav_image"
+                app:layout_constraintEnd_toEndOf="@+id/iv_fav_image"
+                app:layout_constraintStart_toStartOf="@+id/iv_fav_image"
+                tools:text="Acme Restaurant" />
+
+        </androidx.cardview.widget.CardView>
+
+
+        <!--        <view-->
+        <!--            android:id="@+id/image_title_cover"-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="0dp"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="@+id/iv_fav_image"-->
+        <!--            app:layout_constraintStart_toStartOf="@+id/iv_fav_image" />-->
+
 
         <TextView
-            android:id="@+id/tv_fav_name"
+            android:id="@+id/tv_fav_location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="32dp"
-            android:layout_marginBottom="32dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="@android:color/black"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_fav_image"
-            app:layout_constraintEnd_toEndOf="@+id/iv_fav_image"
-            app:layout_constraintStart_toStartOf="@+id/iv_fav_image"
-            tools:text="Acme Restaurant" />
+            android:textAllCaps="true"
+            android:layout_marginTop="@dimen/dimen_4"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="12sp"
+            android:layout_marginHorizontal="@dimen/dimen_12"
+            app:layout_constraintBottom_toTopOf="@id/tv_fav_cuisine"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_fav_restaurant_image"
+            tools:text="Eutopia County" />
+
+        <TextView
+            android:id="@+id/tv_fav_cuisine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:layout_marginHorizontal="@dimen/dimen_12"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="@dimen/text_12"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_fav_location"
+            tools:text="Indian, Seafood" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
