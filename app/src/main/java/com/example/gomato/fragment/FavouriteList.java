@@ -9,6 +9,8 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.example.gomato.R;
 import com.example.gomato.common.SearchTypes;
@@ -41,7 +43,7 @@ public class FavouriteList extends Fragment implements IRestaurantAction {
                 container, false);
 
         adapter = new FavouritesRecyclerAdapter();
-        binder.rvFavRestaurants.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        binder.rvFavRestaurants.setLayoutManager(new LinearLayoutManager(getActivity()));
         binder.rvFavRestaurants.addItemDecoration(
                 new FavouritesRecyclerAdapter.CardDecorator(getActivity(), R.dimen.card_margins));
 
