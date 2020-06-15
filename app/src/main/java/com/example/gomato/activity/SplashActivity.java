@@ -62,8 +62,8 @@ public class SplashActivity extends AppCompatActivity {
 
     private static final int LOCATION_REQUEST_CODE = 1001;
 
-    @Inject
-    ZomatoServiceApi zomatoServiceApi;
+//    @Inject
+//    ZomatoServiceApi zomatoServiceApi;
 
     private DisposableObserver disposableObserver;
     private CategoryResponse categoryResponse;
@@ -93,10 +93,10 @@ public class SplashActivity extends AppCompatActivity {
 //                    e.printStackTrace();
 //                }
 //        }).start();
-        DaggerNetworkComponent.builder()
-                .networkModule(new NetworkModule(BuildConfig.ZOMATO_BASE_URL))
-                .build()
-                .inject(this);
+//        DaggerNetworkComponent.builder()
+//                .networkModule(new NetworkModule(BuildConfig.ZOMATO_BASE_URL))
+//                .build()
+//                .inject(this);
         requestLocationAccess();
     }
 
@@ -193,36 +193,36 @@ public class SplashActivity extends AppCompatActivity {
             super.onLocationResult(locationResult);
             location = locationResult.getLastLocation();
             locationProviderClient.removeLocationUpdates(locationCallback);
-            fetchDataFromZomatoToProceed();
+//            fetchDataFromZomatoToProceed();
             launchNextScreen();
         }
     };
 
     private void fetchDataFromZomatoToProceed() {
 
-        disposableObserver = zomatoServiceApi.getCategories()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableObserver<CategoryResponse>() {
-                    @Override
-                    public void onNext(CategoryResponse catRes) {
-                        categoryResponse = catRes;
-                        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-                        String jsonStr = gson.toJson(categoryResponse.getCategories());
-                        Log.d("Category Response",jsonStr);
-                        Timber.d("The category has been received: %s", categoryResponse.getCategories().size());
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        finish();
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        launchNextScreen();
-                    }
-                });
+//        disposableObserver = zomatoServiceApi.getCategories()
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribeWith(new DisposableObserver<CategoryResponse>() {
+//                    @Override
+//                    public void onNext(CategoryResponse catRes) {
+//                        categoryResponse = catRes;
+//                        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+//                        String jsonStr = gson.toJson(categoryResponse.getCategories());
+//                        Log.d("Category Response",jsonStr);
+//                        Timber.d("The category has been received: %s", categoryResponse.getCategories().size());
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        finish();
+//                    }
+//
+//                    @Override
+//                    public void onComplete() {
+//                        launchNextScreen();
+//                    }
+//                });
     }
 
     private void launchNextScreen() {
