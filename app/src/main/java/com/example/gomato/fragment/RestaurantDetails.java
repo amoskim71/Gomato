@@ -94,29 +94,6 @@ public class RestaurantDetails extends Fragment implements RestaurantDetailsView
                 .load(getArguments().getString("rFeatureImage"))
                 .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-//                .listener(new RequestListener<Drawable>() {
-//                    @Override
-//                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-//                        getActivity().supportPostponeEnterTransition();
-//                        return false;
-//                    }
-//
-//                    @Override
-//                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-//                        getActivity().supportStartPostponedEnterTransition();
-//                        if (resource != null) {
-//                            Drawable drawable = context.getResources().getDrawable(R.drawable.restaurant_menu);
-//                            Bitmap bitmap = ((BitmapDrawable)drawable).getBitmap();
-//
-//                            Palette palette = Palette.from(bitmap).generate();
-//                            // Use generated instance
-//                            mColorPalette = palette.getMutedColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryDark));
-//
-////                            binder.ivRestDetailsHeader.setBackgroundColor(mColorPalette);
-//                        }
-//                        return false;
-//                    }
-//                })
                 .into(binder.ivRestDetailsHeader);
         restaurantDetailsViewModel = new RestaurantDetailsViewModel(this);
         binder.cardLayoutRestDetailsHeader.setRestDetails(restaurantDetailsViewModel);

@@ -35,7 +35,6 @@ import org.parceler.Parcels;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 
 import timber.log.Timber;
 

@@ -41,7 +41,6 @@ public class RestaurantListModel {
      * @return Observable which will be notified when the data is available
      */
     public Observable<SearchResponse> search(LocationCoordinates locationCoordinates) {
-
         //This returns the observable which will fire once an observer is subscribed with it
         return Observable.create(emitter ->
 
