@@ -55,9 +55,9 @@ public class RestaurantListModel {
 
                 })).flatMap(responseCache -> {
 
-                    if(!"".equals(responseCache.trim())) {
-                        return Observable.just(new Gson().fromJson(responseCache, SearchResponse.class));
-                    }
+//                    if(!"".equals(responseCache.trim())) {
+//                        return Observable.just(new Gson().fromJson(responseCache, SearchResponse.class));
+//                    }
                     return zomatoServiceApi.getCategorySearch(Double.toString(locationCoordinates.getLatitude()),
                             Double.toString(locationCoordinates.getLongitude()), searchType);
 
@@ -104,7 +104,7 @@ public class RestaurantListModel {
                     @Override
                     public void onNext(SearchResponse response) {
                         Log.d("Search Response", response.toString());
-                        CacheDB.getInstance().cache(searchType, new Gson().toJson(searchResponse));
+//                        CacheDB.getInstance().cache(searchType, new Gson().toJson(searchResponse));
                     }
 
                     @Override
