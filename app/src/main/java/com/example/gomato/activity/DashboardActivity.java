@@ -119,7 +119,7 @@ public class DashboardActivity extends AppCompatActivity implements IRestaurantA
 
     @Override
     public void onBackPressed() {
-        CacheDB.getInstance().purgeCache();
+//        CacheDB.getInstance().purgeCache();
         super.onBackPressed();
     }
 

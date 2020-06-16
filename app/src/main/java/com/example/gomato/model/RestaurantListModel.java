@@ -1,5 +1,7 @@
 package com.example.gomato.model;
 
+import android.util.Log;
+
 import com.example.gomato.BuildConfig;
 import com.example.gomato.common.SearchTypes;
 import com.example.gomato.dagger.DaggerNetworkComponent;
@@ -44,7 +46,9 @@ public class RestaurantListModel {
         //This returns the observable which will fire once an observer is subscribed with it
         return Observable.create(emitter ->
 
-                disposableObserver = Observable.defer(() -> Observable.create((ObservableOnSubscribe<String>) cacheEmitter -> {
+                disposableObserver = Observable.defer(() ->
+                        Observable.create((ObservableOnSubscribe<String>) cacheEmitter ->
+                        {
 
                     String data = CacheDB.getInstance().getFromCache(searchType);
                     cacheEmitter.onNext(data);
@@ -54,7 +58,6 @@ public class RestaurantListModel {
                     if(!"".equals(responseCache.trim())) {
                         return Observable.just(new Gson().fromJson(responseCache, SearchResponse.class));
                     }
-
                     return zomatoServiceApi.getCategorySearch(Double.toString(locationCoordinates.getLatitude()),
                             Double.toString(locationCoordinates.getLongitude()), searchType);
 
@@ -64,6 +67,7 @@ public class RestaurantListModel {
                             @Override
                             public void onNext(SearchResponse searchResponse) {
 
+                                Log.d("RestaurantList",searchResponse.toString());
                                 cacheSearchResponse(searchResponse);
                                 emitter.onNext(searchResponse);
                             }
@@ -99,6 +103,7 @@ public class RestaurantListModel {
                 .subscribeWith(new DisposableObserver<SearchResponse>() {
                     @Override
                     public void onNext(SearchResponse response) {
+                        Log.d("Search Response", response.toString());
                         CacheDB.getInstance().cache(searchType, new Gson().toJson(searchResponse));
                     }
 
