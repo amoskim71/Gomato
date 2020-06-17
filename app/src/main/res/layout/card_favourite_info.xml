@@ -12,7 +12,7 @@
             android:id="@+id/card_fav_restaurant_image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="16dp"
+            app:cardCornerRadius="@dimen/dimen_16"
             app:cardElevation="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -47,16 +47,6 @@
 
         </androidx.cardview.widget.CardView>
 
-
-        <!--        <view-->
-        <!--            android:id="@+id/image_title_cover"-->
-        <!--            android:layout_width="0dp"-->
-        <!--            android:layout_height="0dp"-->
-        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--            app:layout_constraintEnd_toEndOf="@+id/iv_fav_image"-->
-        <!--            app:layout_constraintStart_toStartOf="@+id/iv_fav_image" />-->
-
-
         <TextView
             android:id="@+id/tv_fav_location"
             android:layout_width="match_parent"
@@ -65,8 +55,8 @@
             android:maxLines="1"
             android:textAllCaps="true"
             android:layout_marginTop="@dimen/dimen_4"
-            android:textColor="@android:color/darker_gray"
-            android:textSize="12sp"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
             android:layout_marginHorizontal="@dimen/dimen_12"
             app:layout_constraintBottom_toTopOf="@id/tv_fav_cuisine"
             app:layout_constraintEnd_toEndOf="parent"
@@ -81,7 +71,7 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:layout_marginHorizontal="@dimen/dimen_12"
-            android:textColor="@android:color/darker_gray"
+            android:textColor="@android:color/tab_indicator_text"
             android:textSize="@dimen/text_12"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_fav_location"
