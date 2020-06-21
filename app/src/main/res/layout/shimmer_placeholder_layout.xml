@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:id="@+id/ll_cat_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_category_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_6"
+        android:layout_marginTop="@dimen/dimen_6"
+        android:layout_marginEnd="@dimen/dimen_6"
+        app:cardCornerRadius="@dimen/dimen_4"
+        app:cardElevation="@dimen/dimen_8">
+
+        <RelativeLayout
+            android:id="@+id/rl_inner_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_category_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/comic_papyrus"
+                android:gravity="center"
+                android:text="@{catViewModel.headerTitle}"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/text_18"
+                android:textStyle="bold"
+                tools:text="Go out for lunch or dinner" />
+
+            <TextView
+                android:id="@+id/tv_category_sub_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_category_header"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:layout_marginEnd="@dimen/dimen_8"
+                android:gravity="center"
+                android:text="@{catViewModel.headerSubTitle}"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="@dimen/text_12"
+                android:textStyle="bold"
+                tools:text="Dine-out restaurants" />
+
+    
+</androidx.constraintlayout.widget.ConstraintLayout>
