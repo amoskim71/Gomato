@@ -55,5 +55,5 @@
                 android:textStyle="bold"
                 tools:text="Dine-out restaurants" />
 
-    
+
 </androidx.constraintlayout.widget.ConstraintLayout>
