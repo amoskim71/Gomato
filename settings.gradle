@@ -1,3 +1,2 @@
-include ':gomato'
 include ':app'
 rootProject.name='Gomato'
