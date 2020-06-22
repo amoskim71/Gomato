@@ -22,6 +22,7 @@ import com.example.gomato.databinding.FragmentCategorylistBinding;
 import com.example.gomato.model.search.Restaurant;
 import com.example.gomato.model.search.SearchResponse;
 import com.example.gomato.viewadapter.CategoryRecyclerAdapter;
+import com.example.gomato.viewmodel.CategoryCardViewModel;
 import com.example.gomato.viewmodel.CategoryViewModel;
 
 import org.parceler.Parcels;
@@ -39,6 +40,7 @@ public class CategoryList extends Fragment implements CategoryViewModel.ISearchR
     private IRestaurantAction restaurantActionImpl;
 
     private CategoryViewModel categoryViewModel;
+    private CategoryCardViewModel categoryCardViewModel;
 
     @Nullable
     @Override
@@ -47,6 +49,7 @@ public class CategoryList extends Fragment implements CategoryViewModel.ISearchR
         categoryViewModel = new CategoryViewModel(getArguments().getString(KEY_SEARCH_TYPE),
                 Parcels.unwrap(getArguments().getParcelable(KEY_LOCATION_COORDINATE)), this);
 
+        categoryCardViewModel = new CategoryCardViewModel();
         categorylistBinder = DataBindingUtil.inflate(inflater, R.layout.fragment_categorylist,
                 container, false);
 
@@ -69,6 +72,11 @@ public class CategoryList extends Fragment implements CategoryViewModel.ISearchR
         super.onActivityCreated(savedInstanceState);
     }
 
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//    }
+
     @Override
     public void onSearchComplete(SearchResponse searchResponse) {
         categorylistBinder.setCatViewModel(categoryViewModel);
@@ -82,13 +90,15 @@ public class CategoryList extends Fragment implements CategoryViewModel.ISearchR
     @Override
     public void onPause() {
         super.onPause();
-//        categorylistBinder.shimmerFrameLayout.stopShimmer();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-//        categorylistBinder.shimmerFrameLayout.startShimmer();
+        categorylistBinder.shimmerFrameLayout.setVisibility(View.VISIBLE);
+//        if (categoryCardViewModel.getName().equals("Truffles")){
+//            categorylistBinder.shimmerFrameLayout.setVisibility(View.GONE);
+//        }
     }
 
     @Override

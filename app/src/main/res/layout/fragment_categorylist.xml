@@ -71,12 +71,13 @@
                     <com.facebook.shimmer.ShimmerFrameLayout
                         android:id="@+id/shimmerFrameLayout"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_below="@id/tv_category_sub_header"
                         android:layout_gravity="center"
                         app:shimmer_auto_start="true"
                         app:shimmer_duration="@integer/duration"
                         android:orientation="vertical"
+                        android:visibility="visible"
                         android:layout_marginStart="@dimen/dimen_8"
                         android:layout_marginTop="@dimen/dimen_16"
                         android:layout_marginEnd="@dimen/dimen_8">
@@ -85,8 +86,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
-
-                            <include layout="@layout/shimmer_placeholder_layout" />
 
                             <include layout="@layout/shimmer_placeholder_layout" />
 
