@@ -1,59 +1,85 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="catCardViewModel"
+            type="com.example.gomato.viewmodel.CategoryCardViewModel"/>
+
+    </data>
 
     <LinearLayout
-        android:id="@+id/ll_cat_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/ll_card_restaurant_info"
+        android:background="?android:selectableItemBackground"
         android:orientation="vertical">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv_category_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dimen_6"
-        android:layout_marginTop="@dimen/dimen_6"
-        android:layout_marginEnd="@dimen/dimen_6"
-        app:cardCornerRadius="@dimen/dimen_4"
-        app:cardElevation="@dimen/dimen_8">
-
-        <RelativeLayout
-            android:id="@+id/rl_inner_container"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:id="@+id/card_restaurant_image"
+            app:cardCornerRadius="@dimen/dimen_6"
+            app:cardElevation="@dimen/dimen_4">
 
-            <TextView
-                android:id="@+id/tv_category_header"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                android:fontFamily="@font/comic_papyrus"
-                android:gravity="center"
-                android:text="@{catViewModel.headerTitle}"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/text_18"
-                android:textStyle="bold"
-                tools:text="Go out for lunch or dinner" />
+                android:id="@+id/rv_restaurant_container">
 
-            <TextView
-                android:id="@+id/tv_category_sub_header"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tv_category_header"
-                android:layout_marginStart="@dimen/dimen_8"
-                android:layout_marginEnd="@dimen/dimen_8"
-                android:gravity="center"
-                android:text="@{catViewModel.headerSubTitle}"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="@dimen/text_12"
-                android:textStyle="bold"
-                tools:text="Dine-out restaurants" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_200"
+                    android:id="@+id/iv_restaurant_image"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="@string/restaurant_image"
+                    />
+
+            </RelativeLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tv_restaurant_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{catCardViewModel.name}"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_16"
+            android:textStyle="bold"
+            tools:text="Acme Restaurant" />
+
+        <TextView
+            android:id="@+id/tv_restaurant_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{catCardViewModel.location}"
+            android:textAllCaps="true"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="12sp"
+            app:fontFamily="@font/alegreya_sans_sc_light"
+            tools:text="Eutopia County" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_restaurant_genre"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="@dimen/text_12"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:text="@{catCardViewModel.cuisine}"
+            app:fontFamily="@font/alegreya_sans_sc_light"
+            tools:text="Indian, Seafood" />
+
+    </LinearLayout>
+
+</layout>

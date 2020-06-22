@@ -1,10 +1,16 @@
 package com.example.gomato.fragment;
 
+import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.GridLayoutAnimationController;
+import android.view.animation.LayoutAnimationController;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
@@ -55,7 +61,7 @@ public class CategoryList extends Fragment implements CategoryViewModel.ISearchR
         categorylistBinder.rvCategoryRestaurants.addItemDecoration(
                 new CategoryRecyclerAdapter.CardDecorator(getActivity(), R.dimen.card_margins));
         categorylistBinder.rvCategoryRestaurants.setAdapter(categoryRecyclerAdapter);
-
+        categorylistBinder.shimmerFrameLayout.stopShimmer();
         return categorylistBinder.getRoot();
     }
 
@@ -75,10 +81,25 @@ public class CategoryList extends Fragment implements CategoryViewModel.ISearchR
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        categorylistBinder.shimmerFrameLayout.stopShimmer();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+//        categorylistBinder.shimmerFrameLayout.startShimmer();
+    }
+
+    @Override
     public void onClick(Restaurant restaurant) {
         if(null == restaurantActionImpl) {
             return;
         }
         restaurantActionImpl.onClick(restaurant);
     }
+
+
+
 }
