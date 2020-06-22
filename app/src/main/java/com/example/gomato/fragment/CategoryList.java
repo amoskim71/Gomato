@@ -61,7 +61,6 @@ public class CategoryList extends Fragment implements CategoryViewModel.ISearchR
         categorylistBinder.rvCategoryRestaurants.addItemDecoration(
                 new CategoryRecyclerAdapter.CardDecorator(getActivity(), R.dimen.card_margins));
         categorylistBinder.rvCategoryRestaurants.setAdapter(categoryRecyclerAdapter);
-        categorylistBinder.shimmerFrameLayout.stopShimmer();
         return categorylistBinder.getRoot();
     }
 
@@ -83,7 +82,7 @@ public class CategoryList extends Fragment implements CategoryViewModel.ISearchR
     @Override
     public void onPause() {
         super.onPause();
-        categorylistBinder.shimmerFrameLayout.stopShimmer();
+//        categorylistBinder.shimmerFrameLayout.stopShimmer();
     }
 
     @Override

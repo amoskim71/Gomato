@@ -75,8 +75,7 @@
                         android:layout_below="@id/tv_category_sub_header"
                         android:layout_gravity="center"
                         app:shimmer_auto_start="true"
-
-                        android:layoutAnimation="@android:anim/slide_out_right"
+                        app:shimmer_duration="@integer/duration"
                         android:orientation="vertical"
                         android:layout_marginStart="@dimen/dimen_8"
                         android:layout_marginTop="@dimen/dimen_16"
