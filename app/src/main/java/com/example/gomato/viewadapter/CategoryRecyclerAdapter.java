@@ -1,5 +1,6 @@
 package com.example.gomato.viewadapter;
 
+import android.app.MediaRouteButton;
 import android.content.Context;
 import android.graphics.Rect;
 import android.view.LayoutInflater;
@@ -16,9 +17,11 @@ import com.example.gomato.fragment.IRestaurantAction;
 import com.example.gomato.model.search.Restaurant;
 import com.example.gomato.model.search.SearchResponse;
 import com.example.gomato.viewmodel.CategoryCardViewModel;
+import com.facebook.shimmer.ShimmerFrameLayout;
 
 public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecyclerAdapter.CategoryViewHolder> {
 
+    private Context context;
     private SearchResponse searchResponse;
     private IRestaurantAction restaurantActionImpl;
 
@@ -36,7 +39,9 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecycl
 
     @Override
     public void onBindViewHolder(CategoryViewHolder holder, int position) {
-        holder.onBind(position);
+        if (position >= 0){
+            holder.onBind(position);
+        }
 
     }
 
