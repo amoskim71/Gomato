@@ -28,4 +28,9 @@
     <string name="rest_fav_marked">お気に入りとしてマークされたレストラン。</string>
     <string name="rest_fav_cannot_marked">要求されたアクションを実行できませんでした。</string>
     <string name="rest_fav_unmarked">お気に入りとして削除されたレストラン</string>
+    <string name="shortcut_long_label">Delivery</string>
+    <string name="shortcut_short_label">Take Away</string>
+    <string name="forgot_pwd">Forgot password?</string>
+    <string name="password">Password</string>
+    <string name="email_id">Email</string>
 </resources>

@@ -30,6 +30,10 @@
 
     <string name="shortcut_long_label">Delivery</string>
     <string name="shortcut_short_label">Take Away</string>
+    <string name="forgot_pwd">Forgot password?</string>
+    <string name="password">Password</string>
+    <string name="email_id">Email</string>
+    <string name="confirm_password">Confirm password</string>
 
 
 </resources>
