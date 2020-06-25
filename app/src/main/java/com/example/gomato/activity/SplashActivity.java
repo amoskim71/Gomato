@@ -32,6 +32,7 @@ import android.widget.ImageView;
 
 import com.example.gomato.BuildConfig;
 import com.example.gomato.R;
+import com.example.gomato.activity.login.LoginActivity;
 import com.example.gomato.common.PrefsData;
 import com.example.gomato.dagger.DaggerNetworkComponent;
 import com.example.gomato.dagger.NetworkModule;
@@ -245,10 +246,10 @@ public class SplashActivity extends AppCompatActivity {
             prefsData.setFirstTimeLaunch(false);
             finish();
         }else{
-            Intent dashboardIntent = new Intent(this, DashboardActivity.class);
-            dashboardIntent.putExtra("data", bundle);
+            Intent dashboardIntent = new Intent(this, LoginActivity.class);
+//            dashboardIntent.putExtra("data", bundle);
             startActivity(dashboardIntent);
-            finish();
+//            finish();
         }
 
     }

@@ -86,7 +86,7 @@
     <ConstraintSet android:id="@+id/start">
         <Constraint android:id="@+id/sign_up_email">
             <Layout
-                android:layout_width="250dp"
+                android:layout_width="275dp"
                 android:layout_marginTop="70dp"
                 motion:layout_constraintEnd_toEndOf="@+id/sign_up_root"
                 motion:layout_constraintStart_toStartOf="@+id/sign_up_root"
@@ -99,7 +99,7 @@
 
         <Constraint android:id="@+id/sign_up_password">
             <Layout
-                android:layout_width="250dp"
+                android:layout_width="275dp"
                 android:layout_marginTop="16dp"
                 motion:layout_constraintEnd_toEndOf="@+id/sign_up_root"
                 motion:layout_constraintStart_toStartOf="@+id/sign_up_root"
@@ -112,7 +112,7 @@
 
         <Constraint android:id="@+id/sign_up_confirm_password">
             <Layout
-                android:layout_width="250dp"
+                android:layout_width="275dp"
                 android:layout_marginTop="16dp"
                 motion:layout_constraintEnd_toEndOf="@+id/sign_up_root"
                 motion:layout_constraintStart_toStartOf="@+id/sign_up_root"
@@ -125,7 +125,7 @@
 
         <Constraint android:id="@+id/login_email">
             <Layout
-                android:layout_width="250dp"
+                android:layout_width="275dp"
                 android:layout_marginTop="70dp"
                 motion:layout_constraintEnd_toEndOf="@+id/login_root"
                 motion:layout_constraintStart_toStartOf="@+id/login_root"
@@ -136,7 +136,7 @@
 
         <Constraint android:id="@+id/login_password">
             <Layout
-                android:layout_width="250dp"
+                android:layout_width="275dp"
                 android:layout_marginTop="16dp"
                 motion:layout_constraintEnd_toEndOf="@+id/login_root"
                 motion:layout_constraintStart_toStartOf="@+id/login_root"
@@ -162,7 +162,7 @@
             android:id="@+id/logo"
             android:layout_width="130dp"
             android:layout_height="130dp"
-            android:layout_marginTop="32dp">
+            android:layout_marginTop="72dp">
 
             <Layout
                 motion:layout_constraintEnd_toStartOf="@+id/sign_up_root"
@@ -241,7 +241,7 @@
     <ConstraintSet android:id="@+id/end">
         <Constraint android:id="@+id/sign_up_email">
             <Layout
-                android:layout_width="250dp"
+                android:layout_width="275dp"
                 android:layout_marginTop="70dp"
                 motion:layout_constraintEnd_toEndOf="@+id/sign_up_root"
                 motion:layout_constraintStart_toStartOf="@+id/sign_up_root"
@@ -254,7 +254,7 @@
 
         <Constraint android:id="@+id/sign_up_password">
             <Layout
-                android:layout_width="250dp"
+                android:layout_width="275dp"
                 android:layout_marginTop="16dp"
                 motion:layout_constraintEnd_toEndOf="@+id/sign_up_root"
                 motion:layout_constraintStart_toStartOf="@+id/sign_up_root"
@@ -267,7 +267,7 @@
 
         <Constraint android:id="@+id/sign_up_confirm_password">
             <Layout
-                android:layout_width="250dp"
+                android:layout_width="275dp"
                 android:layout_marginTop="16dp"
                 motion:layout_constraintEnd_toEndOf="@+id/sign_up_root"
                 motion:layout_constraintStart_toStartOf="@+id/sign_up_root"
@@ -281,7 +281,7 @@
 
         <Constraint android:id="@+id/login_email">
             <Layout
-                android:layout_width="250dp"
+                android:layout_width="275dp"
                 android:layout_marginTop="70dp"
                 motion:layout_constraintEnd_toEndOf="@+id/login_root"
                 motion:layout_constraintStart_toStartOf="@+id/login_root"
@@ -294,7 +294,7 @@
 
         <Constraint android:id="@+id/login_password">
             <Layout
-                android:layout_width="250dp"
+                android:layout_width="275dp"
                 android:layout_marginTop="16dp"
                 motion:layout_constraintEnd_toEndOf="@+id/login_root"
                 motion:layout_constraintStart_toStartOf="@+id/login_root"
@@ -324,7 +324,7 @@
             android:id="@+id/logo"
             android:layout_width="130dp"
             android:layout_height="130dp"
-            android:layout_marginTop="32dp">
+            android:layout_marginTop="72dp">
 
             <Layout
                 motion:layout_constraintEnd_toEndOf="parent"
@@ -356,7 +356,7 @@
 
         <Constraint
             android:id="@id/sign_up_text"
-            android:layout_width="250dp"
+            android:layout_width="275dp"
             android:layout_height="50dp">
 
             <Layout
@@ -396,30 +396,6 @@
                 motion:layout_constraintStart_toEndOf="@+id/login_root"
                 motion:layout_constraintTop_toTopOf="parent"
                 motion:layout_constraintWidth_percent="0.9" />
-        </Constraint>
-
-        <Constraint
-            android:id="@+id/video_root"
-            android:layout_width="0dp"
-            android:layout_height="match_parent">
-
-            <Layout
-                motion:layout_constraintBottom_toBottomOf="parent"
-                motion:layout_constraintEnd_toEndOf="parent"
-                motion:layout_constraintStart_toEndOf="parent"
-                motion:layout_constraintTop_toTopOf="parent" />
-        </Constraint>
-
-        <Constraint
-            android:id="@+id/videoView"
-            android:layout_width="0dp"
-            android:layout_height="match_parent">
-
-            <Layout
-                motion:layout_constraintBottom_toBottomOf="parent"
-                motion:layout_constraintEnd_toEndOf="parent"
-                motion:layout_constraintStart_toEndOf="parent"
-                motion:layout_constraintTop_toTopOf="parent" />
         </Constraint>
     </ConstraintSet>
 </MotionScene>
