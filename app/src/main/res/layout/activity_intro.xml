@@ -19,16 +19,16 @@
 
     <Button
         android:id="@+id/btn_next"
-        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        style="@style/SkipButton"
         android:layout_width="wrap_content"
         android:layout_height="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="42dp"
         android:background="@drawable/btn_gradient_style"
         android:drawableRight="@drawable/ic_arrow_forward_black_24dp"
         android:drawableTint="@color/colorSplash"
         android:ellipsize="middle"
-        android:text="Next"
+        android:text="@string/next"
         android:textColor="@color/colorWhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -45,6 +45,7 @@
 
     <Button
         android:visibility="invisible"
+        style="@style/SkipButton"
         android:id="@+id/btn_get_started"
         android:layout_width="132dp"
         android:layout_height="wrap_content"

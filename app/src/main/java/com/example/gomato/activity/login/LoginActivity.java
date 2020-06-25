@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.gomato.R;
 import com.example.gomato.activity.DashboardActivity;
+import com.example.gomato.activity.SplashActivity;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class LoginActivity extends AppCompatActivity {
@@ -35,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
                     String password = login_password.getEditText().getText().toString().trim();
                     if (!email.isEmpty() && email.equals("sugandhpatna95@gmail.com")){
                         if (!password.isEmpty() && password.length()>6)
-                            startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
+                            startActivity(new Intent(LoginActivity.this, SplashActivity.class));
                         else
                             Toast.makeText(this, "Password should be greater than 6 character", Toast.LENGTH_SHORT).show();
                     }else{

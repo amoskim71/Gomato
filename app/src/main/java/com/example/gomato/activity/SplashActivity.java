@@ -246,8 +246,8 @@ public class SplashActivity extends AppCompatActivity {
             prefsData.setFirstTimeLaunch(false);
             finish();
         }else{
-            Intent dashboardIntent = new Intent(this, LoginActivity.class);
-//            dashboardIntent.putExtra("data", bundle);
+            Intent dashboardIntent = new Intent(this, DashboardActivity.class);
+            dashboardIntent.putExtra("data", bundle);
             startActivity(dashboardIntent);
 //            finish();
         }

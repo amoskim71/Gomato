@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="BaseTheme" parent="Theme.MaterialComponents.Light.Bridge">
 <!--        <item name="android:windowBackground">@color/colorSplash</item>-->
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -9,7 +9,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
+    <style name="BaseTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
@@ -24,6 +24,12 @@
         <item name="colorControlNormal">@color/colorWhite</item>
         <item name="colorControlActivated">@color/colorGold</item>
     </style>
+
+    <style name="SkipButton" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:buttonStyle">@style/Widget.AppCompat.Button.Borderless.Colored</item>
+        <item name="android:textColor">@color/colorBlue</item>
+        <item name="colorControlHighlight">@color/colorSplash</item>
+    </style>
 <!--    <style name="AppTheme.LightActionBar">-->
 <!--        <item name="android:windowTranslucentStatus">true</item>-->
 <!--        <item name="android:windowTranslucentNavigation">true</item>-->
@@ -36,7 +42,6 @@
         <item name="android:textColorHint">@color/White</item>
         <item name="boxStrokeColor">@color/selector_text_input_layout_border</item>
         <item name="hintTextColor">@color/White</item>
-        <item name="android:textCursorDrawable">@color/White</item>
     </style>
 
 <!--    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.Button.OutlinedButton">-->

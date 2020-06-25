@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.gomato.R;
+import com.example.gomato.activity.login.LoginActivity;
 import com.example.gomato.common.PrefsData;
 import com.example.gomato.common.ScreenItem;
 import com.example.gomato.viewadapter.IntroViewPagerAdapter;
@@ -96,7 +97,7 @@ public class IntroActivity extends AppCompatActivity {
         btnGetStarted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent mainActivity = new Intent(getApplicationContext(),SplashActivity.class);
+                Intent mainActivity = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(mainActivity);
                 // also we need to save a boolean value to storage so next time when the user run the app
                 // we could know that he is already checked the intro screen activity

@@ -36,6 +36,7 @@
     <string name="confirm_password">Confirm password</string>
     <string name="login_text">LOG IN</string>
     <string name="sign_up_text">SIGN UP</string>
+    <string name="next">Next</string>
 
 
 </resources>
