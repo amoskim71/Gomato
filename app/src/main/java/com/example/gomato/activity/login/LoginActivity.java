@@ -16,8 +16,9 @@ import com.google.android.material.textfield.TextInputLayout;
 
 public class LoginActivity extends AppCompatActivity {
     private int currentStateId = R.id.start;
-    private TextView login_text;
+    private TextView login_text, sign_up_text;
     private TextInputLayout login_email, login_password;
+    private TextInputLayout sign_up_email, sign_up_password, confirm_pwd ;
     private MotionLayout motionLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,10 @@ public class LoginActivity extends AppCompatActivity {
         login_email = findViewById(R.id.login_email);
         login_password = findViewById(R.id.login_password);
         motionLayout = findViewById(R.id.motionLayout);
+        sign_up_text = findViewById(R.id.sign_up_text);
+        sign_up_email = findViewById(R.id.sign_up_email);
+        sign_up_password = findViewById(R.id.sign_up_password);
+        confirm_pwd = findViewById(R.id.sign_up_confirm_password);
         login_text.setOnClickListener((view) ->{
             switch(currentStateId) {
                 case R.id.start:
@@ -41,12 +46,32 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(this, "Password should be greater than 6 character", Toast.LENGTH_SHORT).show();
                     }else{
                         Toast.makeText(this, "Invalid Email Id", Toast.LENGTH_SHORT).show();
+                        currentStateId = R.id.end ;
                     }
                 default:
                     motionLayout.transitionToStart();
             }
         });
 
+        sign_up_text.setOnClickListener((view)->{
+            switch (currentStateId){
+                case R.id.end:
+                    String email = sign_up_email.getEditText().getText().toString().trim();
+                    String password = sign_up_password.getEditText().getText().toString().trim();
+                    String confirmPwd = confirm_pwd.getEditText().getText().toString().trim();
+                    if (!email.isEmpty() && email.equals("sugandhpatna95@gmail.com")){
+                        if (!password.isEmpty() && password.length()>6)
+                            startActivity(new Intent(LoginActivity.this, SplashActivity.class));
+                        else
+                            Toast.makeText(this, "Password should be greater than 6 character", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(this, "Invalid Email Id", Toast.LENGTH_SHORT).show();
+                        currentStateId = R.id.start ;
+                    }
+                default:
+                    motionLayout.transitionToEnd();
+            }
+        });
 
 
         motionLayout.setTransitionListener(new MotionLayout.TransitionListener() {
