@@ -16,7 +16,7 @@ import com.google.android.material.textfield.TextInputLayout;
 
 public class LoginActivity extends AppCompatActivity {
     private int currentStateId = R.id.start;
-    private TextView login_text, sign_up_text;
+    private TextView login_text, sign_up_text, forgot_password;
     private TextInputLayout login_email, login_password;
     private TextInputLayout sign_up_email, sign_up_password, confirm_pwd ;
     private MotionLayout motionLayout;
@@ -71,6 +71,10 @@ public class LoginActivity extends AppCompatActivity {
                 default:
                     motionLayout.transitionToEnd();
             }
+        });
+
+        forgot_password.setOnClickListener((view)->{
+            startActivity(new Intent(this,ResetPasswordActivity.class));
         });
 
 

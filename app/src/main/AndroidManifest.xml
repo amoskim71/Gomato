@@ -14,8 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/BaseTheme">
-        <activity android:name=".activity.login.LoginActivity"
-            android:theme="@style/BaseTheme.NoActionBar"></activity>
+        <activity android:name=".activity.login.ResetPasswordActivity"></activity>
+        <activity
+            android:name=".activity.login.LoginActivity"
+            android:theme="@style/BaseTheme.NoActionBar" />
         <activity
             android:name=".activity.SplashActivity"
             android:theme="@style/BaseTheme.NoActionBar">
@@ -45,7 +47,7 @@
             android:theme="@style/BaseTheme.NoActionBar" />
         <activity
             android:name=".activity.IntroActivity"
-            android:theme="@style/BaseTheme.NoActionBar"></activity>
+            android:theme="@style/BaseTheme.NoActionBar" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
