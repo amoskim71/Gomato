@@ -98,6 +98,9 @@ public class SplashActivity extends AppCompatActivity {
 //                .networkModule(new NetworkModule(BuildConfig.ZOMATO_BASE_URL))
 //                .build()
 //                .inject(this);
+        if (!prefsData.isLoggedIn()){
+            startActivity(new Intent(this, LoginActivity.class));
+        }
         requestLocationAccess();
     }
 
@@ -249,7 +252,7 @@ public class SplashActivity extends AppCompatActivity {
             Intent dashboardIntent = new Intent(this, DashboardActivity.class);
             dashboardIntent.putExtra("data", bundle);
             startActivity(dashboardIntent);
-//            finish();
+            finish();
         }
 
     }

@@ -28,7 +28,7 @@ class SmsReceiver extends BroadcastReceiver {
                     try {
                         // Start activity to show consent dialog to user, activity must be started in
                         // 5 minutes, otherwise you'll receive another TIMEOUT intent
-                        startActivityForResult(consentIntent, SMS_CONSENT_REQUEST);
+//                        startActivityForResult(consentIntent, SMS_CONSENT_REQUEST);
                     } catch (ActivityNotFoundException e) {
                         // Handle the exception ...
                     }
