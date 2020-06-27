@@ -9,6 +9,7 @@ import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ShortcutInfo;
@@ -18,9 +19,11 @@ import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +32,7 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.gomato.BuildConfig;
 import com.example.gomato.R;
@@ -71,7 +75,6 @@ public class SplashActivity extends AppCompatActivity {
     private Location location;
     private FusedLocationProviderClient locationProviderClient;
     private ImageView iconImage;
-    PrefsData prefsData;
 //    private AnimatedVectorDrawableCompat animatedVectorDrawableCompat;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,16 +143,32 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void requestLocationAccess() {
-        //If the permission has been provided
-        if (PackageManager.PERMISSION_GRANTED == ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION)) {
+       if (PrefsData.isLocationEnabled(getApplicationContext())){
+           //If the permission has been provided
+           if (PackageManager.PERMISSION_GRANTED == ContextCompat.checkSelfPermission(this,
+                   Manifest.permission.ACCESS_FINE_LOCATION)) {
 
-            fetchLocationInformation();
-            return;
-        }
-        //Request the permission from the user
-        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                LOCATION_REQUEST_CODE);
+               fetchLocationInformation();
+               return;
+           }else{
+               //I will skip it for this demo
+               if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                   if (PrefsData.neverAskAgainSelected(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
+                       displayNeverAskAgainDialog();
+                   } else {
+                       ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                               100);
+                   }
+               }
+           }
+           //Request the permission from the user
+           ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                   LOCATION_REQUEST_CODE);
+       }else{
+           Toast.makeText(this, "GPS IS DISABLED",Toast.LENGTH_SHORT).show();
+           Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+           startActivity(intent);
+       }
     }
 
     private void fetchLocationInformation() {
@@ -157,7 +176,7 @@ public class SplashActivity extends AppCompatActivity {
         //permission check
         if (ActivityCompat.checkSelfPermission(SplashActivity.this,
                 Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
+           return;
         }
 
         locationProviderClient = LocationServices.getFusedLocationProviderClient(getApplicationContext());
@@ -167,7 +186,6 @@ public class SplashActivity extends AppCompatActivity {
                 .addOnSuccessListener(loc -> {
                     //We did not get the last location, lets get it
                     if(null == loc) {
-
                         LocationRequest locationRequest = LocationRequest.create()
                                 .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
                                 .setInterval(10000)
@@ -186,6 +204,26 @@ public class SplashActivity extends AppCompatActivity {
                     fetchDataFromZomatoToProceed();
                     launchNextScreen();
                 });
+    }
+
+    private void displayNeverAskAgainDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("We need to send SMS for performing necessary task. Please permit the permission through "
+                + "Settings screen.\n\nSelect Permissions -> Enable permission");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Permit Manually", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                Intent intent = new Intent();
+                intent.setAction(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                Uri uri = Uri.fromParts("package", getPackageName(), null);
+                intent.setData(uri);
+                startActivity(intent);
+            }
+        });
+        builder.setNegativeButton("Cancel", null);
+        builder.show();
     }
 
     private LocationCallback locationCallback = new LocationCallback() {
@@ -241,12 +279,11 @@ public class SplashActivity extends AppCompatActivity {
         bundle.putParcelable("categoryResponse", Parcels.wrap(categoryResponse));
         bundle.putParcelable("location", Parcels.wrap(locationCoordinates));
 
-        prefsData = new PrefsData(this);
-        if(prefsData.isFirstTimeLaunch()){
+        if(PrefsData.isFirstTimeLaunch()){
             startActivity(new Intent(this,IntroActivity.class));
-            prefsData.setFirstTimeLaunch(false);
+            PrefsData.setFirstTimeLaunch(false);
             finish();
-        }else if (!prefsData.isLoggedIn()){
+        }else if (!PrefsData.isLoggedIn()){
             startActivity(new Intent(this, LoginActivity.class));
         }else{
             Intent dashboardIntent = new Intent(this, DashboardActivity.class);
