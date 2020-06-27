@@ -37,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
         sign_up_email = findViewById(R.id.sign_up_email);
         sign_up_password = findViewById(R.id.sign_up_password);
         confirm_pwd = findViewById(R.id.sign_up_confirm_password);
+        forgot_password = findViewById(R.id.forgot_password);
         login_text.setOnClickListener((view) ->{
             switch(currentStateId) {
                 case R.id.start:
