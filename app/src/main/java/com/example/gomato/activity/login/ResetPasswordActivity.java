@@ -35,6 +35,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
     private static final int SMS_CONSENT_REQUEST = 2;  // Set to an unused request code
     private TextInputLayout etNumber;
     private EditText enterNumber, etOtp;
+    private SmsReceiver smsVerificationReceiver;
 //    private final BroadcastReceiver smsVerificationReceiver = new BroadcastReceiver() {
 //        @Override
 //        public void onReceive(Context context, Intent intent) {
