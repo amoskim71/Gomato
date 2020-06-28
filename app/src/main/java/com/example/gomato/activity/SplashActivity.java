@@ -12,25 +12,14 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.pm.ShortcutInfo;
-import android.content.pm.ShortcutManager;
-import android.content.res.Resources;
-import android.graphics.drawable.Animatable;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.Icon;
+
 import android.location.Location;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
 import android.provider.Settings;
-import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -50,13 +39,10 @@ import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
 import org.parceler.Parcels;
 
 import java.util.Collections;
-
 import javax.inject.Inject;
-
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.DisposableObserver;
@@ -102,12 +88,12 @@ public class SplashActivity extends AppCompatActivity {
 //                .build()
 //                .inject(this);
         requestLocationAccess();
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        requestLocationAccess();
     }
 
     @Override
@@ -279,11 +265,11 @@ public class SplashActivity extends AppCompatActivity {
         bundle.putParcelable("categoryResponse", Parcels.wrap(categoryResponse));
         bundle.putParcelable("location", Parcels.wrap(locationCoordinates));
 
-        if(PrefsData.isFirstTimeLaunch()){
+        if(PrefsData.isFirstTimeLaunch(this)){
             startActivity(new Intent(this,IntroActivity.class));
-            PrefsData.setFirstTimeLaunch(false);
+            PrefsData.setFirstTimeLaunch(this,false);
             finish();
-        }else if (!PrefsData.isLoggedIn()){
+        }else if (!PrefsData.isLoggedIn(this)){
             startActivity(new Intent(this, LoginActivity.class));
         }else{
             Intent dashboardIntent = new Intent(this, DashboardActivity.class);

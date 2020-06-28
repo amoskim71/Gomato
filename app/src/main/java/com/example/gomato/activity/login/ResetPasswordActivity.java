@@ -1,5 +1,6 @@
 package com.example.gomato.activity.login;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.PendingIntent;
@@ -21,6 +22,9 @@ import com.google.android.gms.auth.api.credentials.HintRequest;
 import com.google.android.gms.auth.api.phone.SmsRetriever;
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.common.api.Status;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class ResetPasswordActivity extends AppCompatActivity {
@@ -31,34 +35,33 @@ public class ResetPasswordActivity extends AppCompatActivity {
     private static final int SMS_CONSENT_REQUEST = 2;  // Set to an unused request code
     private TextInputLayout etNumber;
     private EditText enterNumber, etOtp;
-    private final BroadcastReceiver smsVerificationReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (SmsRetriever.SMS_RETRIEVED_ACTION.equals(intent.getAction())) {
-                Bundle extras = intent.getExtras();
-                Status smsRetrieverStatus = (Status) extras.get(SmsRetriever.EXTRA_STATUS);
-
-                switch (smsRetrieverStatus.getStatusCode()) {
-                    case CommonStatusCodes.SUCCESS:
-                        // Get consent intent
-                        Intent consentIntent = extras.getParcelable(SmsRetriever.EXTRA_CONSENT_INTENT);
-                        try {
-                            // Start activity to show consent dialog to user, activity must be started in
-                            // 5 minutes, otherwise you'll receive another TIMEOUT intent
-//                            consentIntent.putExtra("OTP","6789");
-                            startActivityForResult(consentIntent, SMS_CONSENT_REQUEST);
-                        } catch (ActivityNotFoundException e) {
-                            // Handle the exception ...
-                        }
-                        break;
-                    case CommonStatusCodes.TIMEOUT:
-                        // Time out occurred, handle the error.
-                        break;
-                }
-            }
-        }
-    };
-
+//    private final BroadcastReceiver smsVerificationReceiver = new BroadcastReceiver() {
+//        @Override
+//        public void onReceive(Context context, Intent intent) {
+//            if (SmsRetriever.SMS_RETRIEVED_ACTION.equals(intent.getAction())) {
+//                Bundle extras = intent.getExtras();
+//                Status smsRetrieverStatus = (Status) extras.get(SmsRetriever.EXTRA_STATUS);
+//
+//                switch (smsRetrieverStatus.getStatusCode()) {
+//                    case CommonStatusCodes.SUCCESS:
+//                        // Get consent intent
+//                        Intent consentIntent = extras.getParcelable(SmsRetriever.EXTRA_CONSENT_INTENT);
+//                        try {
+//                            // Start activity to show consent dialog to user, activity must be started in
+//                            // 5 minutes, otherwise you'll receive another TIMEOUT intent
+////                            consentIntent.putExtra("OTP","6789");
+//                            startActivityForResult(consentIntent, SMS_CONSENT_REQUEST);
+//                        } catch (ActivityNotFoundException e) {
+//                            // Handle the exception ...
+//                        }
+//                        break;
+//                    case CommonStatusCodes.TIMEOUT:
+//                        // Time out occurred, handle the error.
+//                        break;
+//                }
+//            }
+//        }
+//    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,15 +70,28 @@ public class ResetPasswordActivity extends AppCompatActivity {
         etNumber = findViewById(R.id.etNumber);
         enterNumber = findViewById(R.id.enterNumber);
         etOtp = findViewById(R.id.etOtp);
-        // Start listening for SMS User Consent broadcasts from senderPhoneNumber
-        // The Task<Void> will be successful if SmsRetriever was able to start
-        // SMS User Consent, and will error if there was an error starting.
-//        Task<Void> task = SmsRetriever.getClient(this).startSmsUserConsent(SmsRetriever.SEND_PERMISSION);
         try {
             requestHint();
         } catch (IntentSender.SendIntentException e) {
             e.printStackTrace();
         }
+        // Start listening for SMS User Consent broadcasts from senderPhoneNumber
+        // The Task<Void> will be successful if SmsRetriever was able to start
+        // SMS User Consent, and will error if there was an error starting.
+        Task<Void> task = SmsRetriever.getClient(this).startSmsUserConsent(SmsRetriever.SEND_PERMISSION);
+        task.addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.d("Activity","Successfully Started Retriever");
+            }
+        });
+        task.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("Activity","Failed TO Start Retriever") ;
+            }
+        });
+
 
     }
 

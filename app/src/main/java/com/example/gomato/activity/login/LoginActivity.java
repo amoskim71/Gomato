@@ -3,8 +3,10 @@ package com.example.gomato.activity.login;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.motion.widget.MotionLayout;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,7 +30,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-        prefsData = new PrefsData(this);
         login_text = findViewById(R.id.login_text);
         login_email = findViewById(R.id.login_email);
         login_password = findViewById(R.id.login_password);
@@ -45,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
                     String password = login_password.getEditText().getText().toString().trim();
                     if (!email.isEmpty() && email.equals("sugandhpatna95@gmail.com")){
                         if (!password.isEmpty() && password.length()>6) {
-                            prefsData.setUserLogin(true);
+                            prefsData.setUserLogin(this,true);
                             startActivity(new Intent(LoginActivity.this, SplashActivity.class));
                         }else
                             Toast.makeText(this, "Password should be greater than 6 character", Toast.LENGTH_SHORT).show();
@@ -79,7 +80,10 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         forgot_password.setOnClickListener((view)->{
-            startActivity(new Intent(this,ResetPasswordActivity.class));
+            Intent intent = new Intent(this,ResetPasswordActivity.class);
+            intent.putExtra("data","12345");
+            startActivity(intent);
+            Log.d("Login Activity", "NEW ACTIVITY");
         });
 
 

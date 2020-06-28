@@ -13,6 +13,7 @@ import com.google.android.gms.common.api.Status;
 import static androidx.core.app.ActivityCompat.startActivityForResult;
 
 class SmsReceiver extends BroadcastReceiver {
+    private static final String TAG = "SmsReceiver";
     private static final int SMS_CONSENT_REQUEST = 2;
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -38,5 +39,10 @@ class SmsReceiver extends BroadcastReceiver {
                     break;
             }
         }
+    }
+
+    interface SmsBroadcastReceiverListener {
+        void onSuccess(Intent intent);
+        void onFailure();
     }
 }
