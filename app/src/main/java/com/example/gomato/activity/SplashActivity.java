@@ -269,7 +269,7 @@ public class SplashActivity extends AppCompatActivity {
             startActivity(new Intent(this,IntroActivity.class));
             PrefsData.setFirstTimeLaunch(this,false);
             finish();
-        }else if (!PrefsData.isLoggedIn(this)){
+        }else if (PrefsData.isLoggedIn(this)){
             startActivity(new Intent(this, LoginActivity.class));
         }else{
             Intent dashboardIntent = new Intent(this, DashboardActivity.class);

@@ -23,7 +23,6 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputLayout login_email, login_password;
     private TextInputLayout sign_up_email, sign_up_password, confirm_pwd ;
     private MotionLayout motionLayout;
-    PrefsData prefsData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
                     String password = login_password.getEditText().getText().toString().trim();
                     if (!email.isEmpty() && email.equals("sugandhpatna95@gmail.com")){
                         if (!password.isEmpty() && password.length()>6) {
-                            prefsData.setUserLogin(this,true);
+                            PrefsData.setUserLogin(this,true);
                             startActivity(new Intent(LoginActivity.this, SplashActivity.class));
                         }else
                             Toast.makeText(this, "Password should be greater than 6 character", Toast.LENGTH_SHORT).show();
