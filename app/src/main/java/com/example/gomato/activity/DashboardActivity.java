@@ -76,8 +76,12 @@ public class DashboardActivity extends AppCompatActivity implements IRestaurantA
         Analytics.setUserAction(Analytics.EVENT_APP_START, Analytics.PARAM_APP_START, "GomatoUser");
 
         shortcutManager = getSystemService(ShortcutManager.class);
+        pinnedShortcuts();
+    }
 
-        Intent dynamicIntent = new Intent(this, SearchActivity.class);
+    private void pinnedShortcuts() {
+
+        Intent dynamicIntent = new Intent(this, DashboardActivity.class);
 //        dynamicIntent.putExtra("location", Parcels.wrap(locationCoordinates));
         dynamicIntent.setAction(Intent.ACTION_VIEW);
         ShortcutInfo dynamicShortcut = new ShortcutInfo.Builder(this, "dynamic_shortcut")
@@ -94,7 +98,15 @@ public class DashboardActivity extends AppCompatActivity implements IRestaurantA
                 .setIcon(Icon.createWithResource(this, R.drawable.ic_restaurantdetail))
                 .setIntent(staticIntent)
                 .build();
-        shortcutManager.setDynamicShortcuts(Arrays.asList(dynamicShortcut,staticShortcut));
+        Intent searchIntent = new Intent(this, SearchActivity.class);
+        searchIntent.setAction(Intent.ACTION_VIEW);
+        ShortcutInfo searchShortcut = new ShortcutInfo.Builder(this, "restaurant_search")
+                .setShortLabel(getString(R.string.search))
+                .setIcon(Icon.createWithResource(this, R.drawable.ic_search))
+                .setIntent(searchIntent)
+                .build();
+
+        shortcutManager.setDynamicShortcuts(Arrays.asList(dynamicShortcut,staticShortcut,searchShortcut));
     }
 
 
@@ -119,7 +131,7 @@ public class DashboardActivity extends AppCompatActivity implements IRestaurantA
 
     @Override
     public void onBackPressed() {
-//        CacheDB.getInstance().purgeCache();
+        CacheDB.getInstance().purgeCache();
         super.onBackPressed();
     }
 
