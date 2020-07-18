@@ -15,7 +15,7 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:layout_width="200dp"
+            android:layout_width="196dp"
             android:layout_height="wrap_content"
             android:background="?android:selectableItemBackground"
             android:orientation="vertical">

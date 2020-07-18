@@ -114,7 +114,7 @@ public class SplashActivity extends AppCompatActivity {
         switch (requestCode) {
 
             case LOCATION_REQUEST_CODE:
-                if (PackageManager.PERMISSION_GRANTED == grantResults[0]) {
+                if (PackageManager.PERMISSION_GRANTED == grantResults[requestCode]) {
                     fetchLocationInformation();
                 } else {
                     location = null;
