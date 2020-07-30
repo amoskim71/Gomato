@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/appbar_padding_top"
-            android:theme="@style/MaterialTheme.AppBarOverlay">
+            android:theme="@style/AppTheme.AppBarOverlay">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -24,7 +24,7 @@
                 android:layout_weight="1"
                 android:background="?attr/colorPrimary"
                 app:layout_scrollFlags="scroll|enterAlways"
-                app:popupTheme="@style/MaterialTheme.PopupOverlay"
+                app:popupTheme="@style/AppTheme.PopupOverlay"
                 app:title="@string/app_name">
 
             </androidx.appcompat.widget.Toolbar>
